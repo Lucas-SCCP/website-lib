@@ -16,7 +16,7 @@ export const Header: React.FC<HeaderProps> = ({ logo }) => {
             <Row style={{ textAlign: 'center' }}>
               <Col xs={12} md={12} lg={12} style={{ padding: '20px' }}>
                 <img
-                  src={logo}
+                  src={`/images/${logo}`}
                   width='200'
                   className='d-inline-block align-top'
                   alt='Logo'

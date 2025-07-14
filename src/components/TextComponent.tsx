@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import { CreateElement } from '../services/ConstructorService';
+import { ConstructorService } from '../services/ConstructorService';
 
 interface TextComponentProps {
   component: {
@@ -12,11 +12,13 @@ interface TextComponentProps {
 }
 
 export const TextComponent: React.FC<TextComponentProps> = ({ component }) => {
+  const constructorService = new ConstructorService();
+
   return (
     <Col key={component.id} xs={12} md={12} lg={component.size}>
       <Row id="element">
         {Object.values(component.elements.content).map((content: any) =>
-          CreateElement(content)
+          constructorService.createElement(content)
         )}
       </Row>
     </Col>

@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import { CreateElement } from '../services/ConstructorService';
+import { ConstructorService } from '../services/ConstructorService';
 import ElementType from '../constants/ElementType'
 
 interface ListComponentProps {
@@ -13,6 +13,8 @@ interface ListComponentProps {
 }
 
 export const ListComponent: React.FC<ListComponentProps> = ({ component }) => {
+  const constructorService = new ConstructorService();
+
   const contents = Object.values(component.elements.content).sort((a, b) => a.sort - b.sort)
   
   const items = []
@@ -35,10 +37,10 @@ export const ListComponent: React.FC<ListComponentProps> = ({ component }) => {
         {items.map(({ icon, text }, index) => (
           <li key={index} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}>
             <span>
-              {CreateElement(icon)}
+              {constructorService.createElement(icon)}
             </span>
             <span className='itens-text'>
-              {CreateElement(text)}
+              {constructorService.createElement(text)}
             </span>
           </li>
         ))}

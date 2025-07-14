@@ -1,7 +1,7 @@
 import { Container, Spinner } from 'react-bootstrap';
 import React from 'react';
 
-const Loading: React.FC = () => {
+export const Loading: React.FC = () => {
   return (
     <Container
       className="d-flex flex-column align-items-center justify-content-center"

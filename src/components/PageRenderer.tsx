@@ -1,9 +1,11 @@
 import { Suspense } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async';
-import { CreateComponent } from '../services/ConstructorService';
+import { ConstructorService } from '../services/ConstructorService';
+import { AnalyticsService } from '../services/AnalyticsService';
 
 interface PageRendererProps {
+  ga4: string;
   title: string;
   components: Array<{
     id: string;
@@ -12,7 +14,8 @@ interface PageRendererProps {
   }>;
 }
 
-export const PageRenderer: React.FC<PageRendererProps> = ({ title, components }) => {
+export const PageRenderer: React.FC<PageRendererProps> = ({ ga4, title, components }) => {
+  const constructorService = new ConstructorService();
   return (
     <Suspense fallback={<div>Carregando elementos...</div>}>
       <Helmet>
@@ -27,7 +30,7 @@ export const PageRenderer: React.FC<PageRendererProps> = ({ title, components })
           <Col xs={12} sm={12} md={12} lg={{ span: 6, offset: 3 }} className='destaque border-primaria'>
             {components.map((component, index) => 
               <Row id='component' key={component.id}>
-                {CreateComponent(component)}
+                {constructorService.createComponent(component)}
               </Row>
             )}
           </Col>

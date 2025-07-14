@@ -3,7 +3,7 @@ import { Form, Row } from 'react-bootstrap';
 
 import UseFormStore from '../stores/UseFormStore';
 
-import { CreateElement } from '../services/ConstructorService';
+import { ConstructorService } from '../services/ConstructorService';
 
 interface ElementContent {
   // Extend this with more properties as needed for your form elements
@@ -22,6 +22,7 @@ interface FormComponentProps {
 }
 
 const FormComponent: React.FC<FormComponentProps> = ({ component }) => {
+  const constructorService = new ConstructorService();
   const registerForm = UseFormStore((state: any) => state.registerForm);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const FormComponent: React.FC<FormComponentProps> = ({ component }) => {
     <Form noValidate onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
       <Row className="form-contact">
         {Object.values(component.elements.content).map((content) =>
-          CreateElement(content)
+          constructorService.createElement(content)
         )}
       </Row>
     </Form>
