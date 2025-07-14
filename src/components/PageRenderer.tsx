@@ -4,13 +4,41 @@ import { Helmet } from 'react-helmet-async';
 import { ConstructorService } from '../services/ConstructorService';
 import { AnalyticsService } from '../services/AnalyticsService';
 
+interface Element {
+  id: number;
+  element_type_id: number;
+  component_id: number;
+  component_parent: number | null;
+  size: number;
+  sort: number;
+  content: string;
+  properties: {
+    text: string
+    style: {
+      color: string,
+      fontSize: string,
+      textAlign: string,
+      fontWeight: string,
+    }
+  };
+}
+
 interface PageRendererProps {
   ga4: string;
   title: string;
   components: Array<{
-    id: string;
-    type: string;
-    props: Record<string, any>;
+    id: number;
+    name: string;
+    page_id: number;
+    component_type_id: number;
+    size: number;
+    sort: number;
+    properties: JSON;
+    enabled: boolean;
+    elements: {
+      line: number,
+      content: Element[];
+    };
   }>;
 }
 
