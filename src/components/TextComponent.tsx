@@ -1,3 +1,4 @@
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { ConstructorService } from '../services/ConstructorService';
 
@@ -17,9 +18,10 @@ export const TextComponent: React.FC<TextComponentProps> = ({ component }) => {
   return (
     <Col key={component.id} xs={12} md={12} lg={component.size}>
       <Row id="element">
-        {Object.values(component.elements.content).map((content: any) =>
-          constructorService.createElement(content)
-        )}
+        {Object.values(component.elements.content).map((content: any) => {
+          const element = constructorService.createElement(content)
+          return React.cloneElement(element, { key: content.id });
+        })}
       </Row>
     </Col>
   )

@@ -28,7 +28,9 @@ interface TextProperties {
 }
 
 const TextElement: React.FC<{ element: TextElementProps }> = ({ element }) => {
-  const properties: TextProperties = JSON.parse(element.properties)
+  const properties: TextProperties = typeof element.properties === 'string'
+    ? JSON.parse(element.properties)
+    : element.properties
   const style = properties.style || {}
 
   return (

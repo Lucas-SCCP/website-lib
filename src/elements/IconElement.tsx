@@ -15,7 +15,9 @@ interface IconProperties {
 }
 
 const IconElement: React.FC<{ element: IconElementProps }> = ({ element }) => {
-  const properties: IconProperties = JSON.parse(element.properties);
+  const properties: IconProperties = typeof element.properties === 'string'
+    ? JSON.parse(element.properties)
+    : element.properties
   const { name, style } = properties;
 
   const elementWithRequiredProps = {

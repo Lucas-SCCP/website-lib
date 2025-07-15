@@ -30,7 +30,9 @@ interface ButtonProperties {
 }
 
 const ButtonElement: React.FC<{ element: ButtonElementProps }> = ({ element }) => {
-  const properties: ButtonProperties = JSON.parse(element.properties);
+  const properties: ButtonProperties = typeof element.properties === 'string'
+    ? JSON.parse(element.properties)
+    : element.properties
   const style = properties.style;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);

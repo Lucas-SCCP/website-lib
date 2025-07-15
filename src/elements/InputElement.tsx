@@ -24,7 +24,9 @@ interface InputProperties {
 }
 
 const InputElement: React.FC<{ element: InputElementProps }> = ({ element }) => {
-  const properties: InputProperties = JSON.parse(element.properties);
+  const properties: InputProperties = typeof element.properties === 'string'
+    ? JSON.parse(element.properties)
+    : element.properties
   const style = properties.style;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);

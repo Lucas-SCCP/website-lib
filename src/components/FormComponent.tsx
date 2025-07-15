@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { Form, Row } from 'react-bootstrap';
 
@@ -6,7 +7,6 @@ import UseFormStore from '../stores/UseFormStore';
 import { ConstructorService } from '../services/ConstructorService';
 
 interface ElementContent {
-  // Extend this with more properties as needed for your form elements
   id: string | number;
   [key: string]: any;
 }
@@ -42,9 +42,10 @@ const FormComponent: React.FC<FormComponentProps> = ({ component }) => {
   return (
     <Form noValidate onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
       <Row className="form-contact">
-        {Object.values(component.elements.content).map((content) =>
-          constructorService.createElement(content)
-        )}
+        {Object.values(component.elements.content).map((content) => {
+          const element = constructorService.createElement(content);
+          return React.cloneElement(element, { key: content.id });
+        })}
       </Row>
     </Form>
   );

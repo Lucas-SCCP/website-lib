@@ -21,7 +21,9 @@ interface AlertProperties {
 }
 
 const AlertElement: React.FC<{ element: AlertElementProps }> = ({ element }) => {
-  const properties: AlertProperties = JSON.parse(element.properties);
+  const properties: AlertProperties = typeof element.properties === 'string'
+    ? JSON.parse(element.properties)
+    : element.properties
   const style = properties.style;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
