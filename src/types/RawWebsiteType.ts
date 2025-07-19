@@ -56,6 +56,11 @@ export type RawWebsiteType = {
             href?: string,
             message?: string,
             variant?: string,
+            visibilityAfter?: boolean,
+            hideButtonAfter?: boolean,
+            loadingTime?: number,
+            mask: string,
+            required?: boolean,
             style: {
               color: string,
               fontSize: string,
