@@ -1,5 +1,6 @@
 import React from 'react'
-import ElementType from '../constants/ElementType'
+import { ElementType } from '../types/ElementType'
+import { ElementEnum } from '../constants/ElementEnum'
 import TextElement from '../elements/TextElement'
 import ImageElement from '../elements/ImageElement'
 import InputElement from '../elements/InputElement'
@@ -9,34 +10,24 @@ import FileElement from '../elements/FileElement'
 import AlertElement from '../elements/AlertElement'
 import LinkElement from '../elements/LinkElement'
 
-export interface BaseElementProps {
-  id: string
-  size: number
-  content: string
-  element_type_id: number
-  properties: string
-  component_id: string
-  [key: string]: any
-}
-
 class ElementFactory {
-  static create(element: BaseElementProps): React.ReactElement | null {
+  static create(element: ElementType): React.ReactElement | null {
     switch (element.element_type_id) {
-      case ElementType.Text:
+      case ElementEnum.Text:
         return <TextElement element={element} />
-      case ElementType.Image:
+      case ElementEnum.Image:
         return <ImageElement element={element} />
-      case ElementType.Input:
+      case ElementEnum.Input:
         return <InputElement element={element} />
-      case ElementType.Icon:
+      case ElementEnum.Icon:
         return <IconElement element={element} />
-      case ElementType.Button:
+      case ElementEnum.Button:
         return <ButtonElement element={element} />
-      case ElementType.File:
+      case ElementEnum.File:
         return <FileElement element={element} />
-      case ElementType.Alert:
+      case ElementEnum.Alert:
         return <AlertElement element={element} />
-      case ElementType.Link:
+      case ElementEnum.Link:
         return <LinkElement element={element} />
       default:
         throw new Error('Invalid element type: ' + element.element_type_id)

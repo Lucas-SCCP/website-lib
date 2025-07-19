@@ -1,30 +1,18 @@
 import { useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
-import ElementColWrapper from './ElementColWrapper';
+
+import { ElementType } from '../types/ElementType';
+import { PropertyType } from '../types/PropertyType';
+
 import UseFormStore from '../stores/UseFormStore';
 
-interface AlertElementProps {
-  id: string;
-  size: number;
-  component_id: string;
-  properties: string; // JSON string with properties
-  [key: string]: any;
-}
+import ElementColWrapper from './ElementColWrapper';
 
-interface AlertProperties {
-  style?: React.CSSProperties;
-  variant?: string;
-  title?: string;
-  message?: string;
-  visibilityAfter?: boolean;
-  [key: string]: any;
-}
-
-const AlertElement: React.FC<{ element: AlertElementProps }> = ({ element }) => {
-  const properties: AlertProperties = typeof element.properties === 'string'
+const AlertElement: React.FC<{ element: ElementType }> = ({ element }) => {
+  const properties: PropertyType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style;
+  const style = properties.style as React.CSSProperties;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
 

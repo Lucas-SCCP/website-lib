@@ -1,19 +1,15 @@
 import React from 'react';
-import ElementColWrapper from './ElementColWrapper';
 import DOMPurify from 'dompurify';
 
-interface FileElementProps {
-  id: string;
-  content: string;
-  size: number;
-  [key: string]: any;
-}
+import { ElementType } from '../types/ElementType';
 
-const FileElement: React.FC<{ element: FileElementProps }> = ({ element }) => {
+import ElementColWrapper from './ElementColWrapper';
+
+const FileElement: React.FC<{ element: ElementType }> = ({ element }) => {
   return (
     <ElementColWrapper element={element}>
       <div
-        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(element.content) }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(element.id.toString()) }}
       />
     </ElementColWrapper>
   );

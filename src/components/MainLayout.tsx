@@ -1,12 +1,9 @@
-import Header from './Header';
-import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 
-interface MainLayoutProps {
-  logo: string;
-}
+import Header from './Header';
+import Footer from './Footer';
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ logo }) => {
+export const MainLayout: React.FC<{ logo: string }> = ({ logo }) => {
   return (
     <>
       <Header

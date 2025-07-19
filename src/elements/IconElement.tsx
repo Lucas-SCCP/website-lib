@@ -1,30 +1,17 @@
 import React, { Suspense } from 'react';
-import ElementColWrapper from './ElementColWrapper';
 import { IconType } from 'react-icons';
 
-interface IconElementProps {
-  id: string
-  size: number
-  properties: string;
-  [key: string]: any;
-}
+import { ElementType } from '../types/ElementType';
+import { PropertyType } from '../types/PropertyType';
 
-interface IconProperties {
-  name: string;
-  style?: React.CSSProperties;
-}
+import ElementColWrapper from './ElementColWrapper';
 
-const IconElement: React.FC<{ element: IconElementProps }> = ({ element }) => {
-  const properties: IconProperties = typeof element.properties === 'string'
+const IconElement: React.FC<{ element: ElementType }> = ({ element }) => {
+  const properties: PropertyType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const { name, style } = properties;
-
-  const elementWithRequiredProps = {
-    ...element,
-    id: element.id ?? 'icon-element',
-    size: element.size ?? 1,
-  };
+  const name = properties.name;
+  const style = properties.style as React.CSSProperties;
 
   // Dynamic lazy import for react-icons/fa
   const LazyIcon = React.lazy<React.FC<{ size?: number; className?: string; style?: React.CSSProperties }>>(
@@ -39,7 +26,7 @@ const IconElement: React.FC<{ element: IconElementProps }> = ({ element }) => {
   );
 
   return (
-    <ElementColWrapper element={elementWithRequiredProps}>
+    <ElementColWrapper element={element}>
       <Suspense fallback={null}>
         <LazyIcon size={20} className="texto-primaria" style={{ marginRight: '8px', ...style }} />
       </Suspense>

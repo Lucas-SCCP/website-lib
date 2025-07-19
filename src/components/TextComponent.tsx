@@ -1,18 +1,11 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+
+import { ComponentType } from '../types/ComponentType';
+
 import { ConstructorService } from '../services/ConstructorService';
 
-interface TextComponentProps {
-  component: {
-    id: string;
-    size: number;
-    elements: {
-      content: Record<string, any>;
-    };
-  };
-}
-
-export const TextComponent: React.FC<TextComponentProps> = ({ component }) => {
+export const TextComponent: React.FC<{ component: ComponentType}> = ({ component }) => {
   const constructorService = new ConstructorService();
 
   return (

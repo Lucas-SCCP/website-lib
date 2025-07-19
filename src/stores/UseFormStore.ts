@@ -2,17 +2,16 @@ import { create } from 'zustand'
 import InputValidateFactory from '../factories/InputValidateFactory'
 
 export interface FormElement {
-  id: string
+  id: number
   name: string | null
   type: string | null
-  formId: string | null
+  formId: number | null
   value: any
   loading: boolean
   hidden: boolean
   error: boolean
   errorMessage: string | null
   validationType: string | null
-  // Add additional fields if needed for initialState merging
   [key: string]: any
 }
 
@@ -25,22 +24,22 @@ export interface FormStoreState {
   forms: Record<string, FormEntry>
   elements: Record<string, FormElement>
 
-  registerForm: (formId: string) => void
-  registerElement: (elementId: string, formId?: string | null, initialState?: Partial<FormElement>) => void
-  validateFormData: (type: string, elementId: string, value: any) => void
-  validateAllFields: (formId: string) => void
-  setElementState: (elementId: string, newState: Partial<FormElement>) => void
-  getElementsByForm: (formId: string) => FormElement[]
-  showElement: (id: string) => void
-  hideElement: (id: string) => void
-  setLoading: (id: string, loading: boolean) => void
+  registerForm: (formId: number) => void
+  registerElement: (elementId: number, formId?: number | null, initialState?: Partial<FormElement>) => void
+  validateFormData: (type: string, elementId: number, value: any) => void
+  validateAllFields: (formId: number) => void
+  setElementState: (elementId: number, newState: Partial<FormElement>) => void
+  getElementsByForm: (formId: number) => FormElement[]
+  showElement: (id: number) => void
+  hideElement: (id: number) => void
+  setLoading: (id: number, loading: boolean) => void
 }
 
 const UseFormStore = create<FormStoreState>((set, get) => ({
   forms: {},
   elements: {},
 
-  registerForm: (formId: string) =>
+  registerForm: (formId: number) =>
     set(state => ({
       forms: {
         ...state.forms,
@@ -48,7 +47,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       }
     })),
 
-  registerElement: (elementId: string, formId: string | null = null, initialState: Partial<FormElement> = {}) =>
+  registerElement: (elementId: number, formId: number | null = null, initialState: Partial<FormElement> = {}) =>
     set(state => {
       if (state.elements[elementId]) return {}
 
@@ -74,10 +73,10 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       if (formId) {
         const existingForm = state.forms[formId] || { elements: [] }
 
-        const alreadyIncluded = existingForm.elements.includes(elementId)
+        const alreadyIncluded = existingForm.elements.includes(elementId.toString())
         const updateElements = alreadyIncluded
           ? existingForm.elements
-          : [...existingForm.elements, elementId]
+          : [...existingForm.elements, elementId.toString()]
 
         newForms[formId] = {
           ...existingForm,
@@ -91,7 +90,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       }
     }),
 
-  validateFormData: (type: string, elementId: string, value: any) => {
+  validateFormData: (type: string, elementId: number, value: any) => {
     const validation = InputValidateFactory.factory(type, value)
 
     get().setElementState(elementId, {
@@ -100,7 +99,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
     })
   },
 
-  validateAllFields: (formId: string) => {
+  validateAllFields: (formId: number) => {
     const elements = get().getElementsByForm(formId)
 
     elements.forEach(element => {
@@ -110,7 +109,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
     })
   },
 
-  setElementState: (elementId: string, newState: Partial<FormElement>) =>
+  setElementState: (elementId: number, newState: Partial<FormElement>) =>
     set(state => ({
       elements: {
         ...state.elements,
@@ -121,12 +120,12 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       }
     })),
 
-  getElementsByForm: (formId: string): FormElement[] =>
+  getElementsByForm: (formId: number): FormElement[] =>
     get().forms[formId]?.elements.map(id => get().elements[id]) || [],
 
-  showElement: (id: string) => get().setElementState(id, { hidden: false }),
-  hideElement: (id: string) => get().setElementState(id, { hidden: true }),
-  setLoading: (id: string, loading: boolean) => get().setElementState(id, { loading })
+  showElement: (id: number) => get().setElementState(id, { hidden: false }),
+  hideElement: (id: number) => get().setElementState(id, { hidden: true }),
+  setLoading: (id: number, loading: boolean) => get().setElementState(id, { loading })
 }))
 
 export default UseFormStore

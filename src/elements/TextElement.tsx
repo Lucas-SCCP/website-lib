@@ -1,37 +1,17 @@
 import React from 'react'
 import DOMPurify from 'dompurify'
+
+import { ElementType } from '../types/ElementType'
+import { PropertyType } from '../types/PropertyType'
+import { StyleType } from '../types/StyleType'
+
 import ElementColWrapper from './ElementColWrapper'
 
-interface TextElementProps {
-  id: string
-  size: number
-  properties: string
-  [key: string]: any
-}
-
-interface TextProperties {
-  text: string
-  size: number
-  style: {
-    display?: string
-    color?: string
-    height?: string
-    alignItems?: string
-    textAlign?: string
-    fontSize?: string
-    fontWeight?: string
-    marginTop?: string
-    marginLeft?: string
-    [key: string]: any
-  }
-  [key: string]: any
-}
-
-const TextElement: React.FC<{ element: TextElementProps }> = ({ element }) => {
-  const properties: TextProperties = typeof element.properties === 'string'
+const TextElement: React.FC<{ element: ElementType }> = ({ element }) => {
+  const properties: PropertyType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style || {}
+  const style = properties.style as StyleType
 
   return (
     <ElementColWrapper element={element}>

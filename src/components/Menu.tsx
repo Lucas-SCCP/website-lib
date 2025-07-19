@@ -1,5 +1,5 @@
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import React from 'react';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 interface MenuLink {
   id: string | number;
@@ -42,7 +42,7 @@ const Menu: React.FC<MenuProps> = ({ menu }) => {
       <Navbar.Collapse id="basic-navbar-nav" className="menu">
         <Nav className="mx-auto">
           {menu.map((element) => {
-            // todo: criar factory para tipo de menu
+            // @todo: criar factory para tipo de menu
             if (element.type === 'link') {
               return (
                 <Nav.Link key={element.id} href={element.path} style={{ color: '#FFF' }}>

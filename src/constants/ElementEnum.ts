@@ -1,4 +1,4 @@
-const ElementType = {
+const ElementEnum = {
   Text: 12,
   Image: 13,
   Input: 10,
@@ -10,6 +10,6 @@ const ElementType = {
   Line: 15
 } as const
 
-Object.freeze(ElementType)
+Object.freeze(ElementEnum)
 
-export default ElementType
+export { ElementEnum }

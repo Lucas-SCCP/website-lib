@@ -2,26 +2,13 @@ import React from 'react';
 import { useEffect } from 'react';
 import { Form, Row } from 'react-bootstrap';
 
+import { ComponentType } from '../types/ComponentType';
+
 import UseFormStore from '../stores/UseFormStore';
 
 import { ConstructorService } from '../services/ConstructorService';
 
-interface ElementContent {
-  id: string | number;
-  [key: string]: any;
-}
-
-interface FormComponentProps {
-  component: {
-    id: string;
-    size: number;
-    elements: {
-      content: Record<string, any>;
-    };
-  };
-}
-
-const FormComponent: React.FC<FormComponentProps> = ({ component }) => {
+const FormComponent: React.FC<{ component: ComponentType}> = ({ component }) => {
   const constructorService = new ConstructorService();
   const registerForm = UseFormStore((state: any) => state.registerForm);
 
@@ -33,7 +20,6 @@ const FormComponent: React.FC<FormComponentProps> = ({ component }) => {
     try {
       event.preventDefault();
       console.log('SUBMIT');
-      // You can add more submit logic here
     } catch (error) {
       console.error('Erro ao enviar o formulário:', error);
     }

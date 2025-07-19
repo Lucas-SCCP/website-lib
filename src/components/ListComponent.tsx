@@ -1,18 +1,12 @@
-import { Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+
+import { ComponentType } from '../types/ComponentType';
+
+import { ElementEnum } from '../constants/ElementEnum'
+
 import { ConstructorService } from '../services/ConstructorService';
-import ElementType from '../constants/ElementType'
 
-interface ListComponentProps {
-  component: {
-    id: string;
-    size: number;
-    elements: {
-      content: Record<string, any>;
-    };
-  };
-}
-
-export const ListComponent: React.FC<ListComponentProps> = ({ component }) => {
+export const ListComponent: React.FC<{ component: ComponentType }> = ({ component }) => {
   const constructorService = new ConstructorService();
 
   const contents = Object.values(component.elements.content).sort((a, b) => a.sort - b.sort)
@@ -20,9 +14,9 @@ export const ListComponent: React.FC<ListComponentProps> = ({ component }) => {
   const items = []
   for (let i = 0; i < contents.length; i++) {
     const current = contents[i]
-    if (current.element_type_id === ElementType.Icon) {
+    if (current.element_type_id === ElementEnum.Icon) {
       const next = contents[i + 1]
-      if (next && next.element_type_id === ElementType.Text) {
+      if (next && next.element_type_id === ElementEnum.Text) {
         items.push({ icon: current, text: next })
         i++
       } else {

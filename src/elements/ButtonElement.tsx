@@ -1,39 +1,20 @@
 import { useEffect, MouseEvent } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
+
+import { ElementType } from '../types/ElementType';
+import { PropertyType } from '../types/PropertyType';
+
 import ElementColWrapper from './ElementColWrapper';
+
 import UseFormStore from '../stores/UseFormStore';
 
 import ButtonActionFactory from '../factories/ButtonActionFactory';
 
-interface ButtonElementProps {
-  id: string;
-  size: number;
-  component_id: string;
-  properties: string; // JSON string
-  [key: string]: any;
-}
-
-interface ButtonProperties {
-  style?: React.CSSProperties;
-  type?: string;
-  variant?: string;
-  href?: string;
-  loadingMessage?: string;
-  loadingTime?: number; // ms
-  title?: string;
-  hideButtonAfter?: boolean;
-  successMessageId?: string;
-  successActionId?: string;
-  visibilityAfter?: boolean;
-  action?: string;
-  [key: string]: any;
-}
-
-const ButtonElement: React.FC<{ element: ButtonElementProps }> = ({ element }) => {
-  const properties: ButtonProperties = typeof element.properties === 'string'
+const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
+  const properties: PropertyType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style;
+  const style = properties.style as React.CSSProperties;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
   const loading = UseFormStore(state => state.elements[element.id]?.loading);

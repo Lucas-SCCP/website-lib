@@ -1,48 +1,13 @@
 import { Suspense } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async';
+
+import type { ComponentType } from '../types/ComponentType';
+
 import { ConstructorService } from '../services/ConstructorService';
 import { AnalyticsService } from '../services/AnalyticsService';
 
-interface Element {
-  id: number;
-  element_type_id: number;
-  component_id: number;
-  component_parent: number | null;
-  size: number;
-  sort: number;
-  content: string;
-  properties: {
-    text: string
-    style: {
-      color: string,
-      fontSize: string,
-      textAlign: string,
-      fontWeight: string,
-    }
-  };
-}
-
-interface PageRendererProps {
-  ga4: string;
-  title: string;
-  components: Array<{
-    id: number;
-    name: string;
-    page_id: number;
-    component_type_id: number;
-    size: number;
-    sort: number;
-    properties: JSON;
-    enabled: boolean;
-    elements: {
-      line: number,
-      content: Element[];
-    };
-  }>;
-}
-
-export const PageRenderer: React.FC<PageRendererProps> = ({ ga4, title, components }) => {
+export const PageRenderer: React.FC<{ ga4: string, title: string, components: Array<ComponentType> }> = ({ ga4, title, components }) => {
   const constructorService = new ConstructorService();
   return (
     <Suspense fallback={<div>Carregando elementos...</div>}>

@@ -1,5 +1,6 @@
-import { Container, Spinner } from 'react-bootstrap';
 import React from 'react';
+
+import { Container, Spinner } from 'react-bootstrap';
 
 export const Loading: React.FC = () => {
   return (

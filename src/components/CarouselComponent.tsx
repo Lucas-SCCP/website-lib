@@ -1,23 +1,8 @@
 import { Row, Col, Carousel } from 'react-bootstrap';
 
-interface CarouselElement {
-  id: string;
-  size: number;
-  content: string;
-  title: string;
-}
+import type { ComponentType } from '../types/ComponentType';
 
-interface CarouselComponentProps {
-  component: {
-    id: string;
-    size: number;
-    elements: {
-      content: Record<string, any>;
-    };
-  };
-}
-
-const CarouselComponent: React.FC<CarouselComponentProps> = ({ component }) => {
+const CarouselComponent: React.FC<{ component: ComponentType}> = ({ component }) => {
   return (
     <Row>
       <Col>

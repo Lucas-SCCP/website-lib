@@ -1,33 +1,19 @@
 import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
-import ElementColWrapper from './ElementColWrapper';
 import InputMask from 'react-input-mask';
+
+import { ElementType } from '../types/ElementType';
+import { PropertyType } from '../types/PropertyType';
+
+import ElementColWrapper from './ElementColWrapper';
+
 import UseFormStore from '../stores/UseFormStore';
 
-interface InputElementProps {
-  id: string;
-  size: number;
-  component_id: string;
-  properties: string;
-  [key: string]: any;
-}
-
-interface InputProperties {
-  name: string;
-  title?: string;
-  style?: React.CSSProperties;
-  validateType?: string;
-  mask?: string;
-  required?: boolean;
-  placeholder?: string;
-  [key: string]: any;
-}
-
-const InputElement: React.FC<{ element: InputElementProps }> = ({ element }) => {
-  const properties: InputProperties = typeof element.properties === 'string'
+const InputElement: React.FC<{ element: ElementType }> = ({ element }) => {
+  const properties: PropertyType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style;
+  const style = properties.style as React.CSSProperties;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
   const error = UseFormStore(state => state.elements[element.id]?.error);

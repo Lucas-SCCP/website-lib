@@ -1,30 +1,16 @@
+import React from 'react';
 import { ApiService } from './ApiService';
 import { CacheService } from './CacheService';
+
+import { WebsiteType } from '../types/WebsiteType';
+
 import ComponentFactory from '../factories/ComponentFactory';
 import ElementFactory from '../factories/ElementFactory';
-import React from 'react';
-
-interface Component {
-  id: string;
-  type: string;
-  props: Record<string, any>;
-}
-
-interface Page {
-  id: number;
-  name: string;
-  path: string;
-  menu: number;
-}
-
-interface WebsiteStructure {
-  pages: Page[];
-}
 
 class ConstructorService {
-  async fetchWebsiteFromApi(websiteId: number, apiUrl: string): Promise<WebsiteStructure> {
+  async fetchWebsiteFromApi(websiteId: number, apiUrl: string): Promise<WebsiteType> {
     const apiService = new ApiService();
-    const website = await apiService.getStructure(websiteId, apiUrl) as WebsiteStructure | null;
+    const website = await apiService.getStructure(websiteId, apiUrl) as WebsiteType | null;
     if (!website) {
       throw new Error('Site não encontrado');
     }
@@ -34,9 +20,9 @@ class ConstructorService {
     return website;
   }
 
-  async fetchWebsiteFromCache(): Promise<WebsiteStructure> {
+  async fetchWebsiteFromCache(): Promise<WebsiteType> {
     const cacheService = new CacheService();
-    const website = cacheService.getStructure() as WebsiteStructure | null;
+    const website = cacheService.getStructure() as WebsiteType | null;
     if (!website) {
       throw new Error('Site não encontrado');
     }
