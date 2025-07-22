@@ -1,5 +1,7 @@
+import type { RawWebsiteType } from "../types/RawWebsiteType";
+
 class CacheService {
-  getStructure(): any {
+  getStructure(): RawWebsiteType {
     try {
       const cachedData = localStorage.getItem('websiteData');
       
@@ -8,9 +10,9 @@ class CacheService {
       }
 
       return JSON.parse(cachedData);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Erro ao buscar dados do cache:', error);
-      throw new Error(error.message || error);
+      throw new Error(error instanceof Error ? error.message : String(error));
     }
   }
 }

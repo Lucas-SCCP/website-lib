@@ -1,5 +1,7 @@
+import type { RawWebsiteType } from "../types/RawWebsiteType";
+
 class ApiService {
-  async getStructure(websiteId: number, apiUrl: string): Promise<any> {
+  async getStructure(websiteId: number, apiUrl: string): Promise<RawWebsiteType> {
     try {
       const response = await fetch(
         `${apiUrl}/website/${websiteId}/structure`
@@ -9,9 +11,9 @@ class ApiService {
       }
       const json = await response.json();
       return json.data;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Erro ao buscar dados da API:', error);
-      throw new Error(error.message || error);
+      throw new Error(error instanceof Error ? error.message : String(error));
     }
   }
 }

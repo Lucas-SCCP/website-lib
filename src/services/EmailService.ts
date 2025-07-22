@@ -1,21 +1,8 @@
-type FormField = {
-  name: string;
-  value: string;
-};
-
-type SendMailParams = FormField[];
-
-interface MailBody {
-  senderName: string;
-  sender: string;
-  recipientName: string;
-  recipient: string;
-  title: string;
-  message: string;
-}
+import type { FormFieldsType } from "../types/FormFieldsType";
+import type { MailBodyType } from '../types/MailBodyType';
 
 class EmailService {
-  async sendMail(params: SendMailParams): Promise<boolean> {
+  async sendMail(params: FormFieldsType[]): Promise<boolean> {
     try {
       const body = this.createBody(params);
       const response = await fetch(
@@ -35,13 +22,13 @@ class EmailService {
       }
 
       return true;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Erro ao buscar dados da API:', error);
       throw new Error(error instanceof Error ? error.message : String(error));
     }
   }
 
-  createBody(params: SendMailParams): MailBody {
+  createBody(params: FormFieldsType[]): MailBodyType {
     const firstName = params.find(e => e.name === 'firstNameInput');
     const lastName = params.find(e => e.name === 'lastNameInput');
     const birthDate = params.find(e => e.name === 'birthDateField');

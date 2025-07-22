@@ -20,7 +20,6 @@ export function AlertElement({ element }: { element: ElementType }) {
       type: 'alert',
       // hidden: properties.visibilityAfter
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [element.id, element.component_id, element.properties, registerElement]);
 
   if (hidden) return null;

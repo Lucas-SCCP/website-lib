@@ -10,8 +10,8 @@ import { AlertElement } from '../elements/AlertElement'
 import { LinkElement } from '../elements/LinkElement'
 import type { ElementType } from '../types/ElementType'
 
-class ElementFactory {
-  static create(element: ElementType): React.ReactElement | null {
+export class ElementFactory {
+  build(element: ElementType): React.ReactElement | null {
     switch (element.element_type_id) {
       case ElementEnum.Text:
         return <TextElement element={element} />
@@ -34,5 +34,3 @@ class ElementFactory {
     }
   }
 }
-
-export default ElementFactory

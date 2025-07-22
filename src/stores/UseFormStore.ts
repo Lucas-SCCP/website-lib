@@ -1,23 +1,23 @@
 import { create } from 'zustand'
-import InputValidateFactory from '../factories/InputValidateFactory'
+import { InputValidateFactory } from '../factories/InputValidateFactory'
 
 export interface FormElement {
   id: number
   name: string | null
   type: string | null
   formId: number | null
-  value: any
+  value: string
   loading: boolean
   hidden: boolean
   error: boolean
   errorMessage: string | null
   validateTypeId: number | null
-  [key: string]: any
+  [key: string]: string | number | boolean | null
 }
 
 export interface FormEntry {
   elements: string[]
-  [key: string]: any
+  [key: string]: string[] | null
 }
 
 export interface FormStoreState {
@@ -26,7 +26,7 @@ export interface FormStoreState {
 
   registerForm: (formId: number) => void
   registerElement: (elementId: number, formId?: number | null, initialState?: Partial<FormElement>) => void
-  validateFormData: (validateTypeId: number, elementId: number, value: any) => void
+  validateFormData: (validateTypeId: number, elementId: number, value: string) => void
   validateAllFields: (formId: number) => void
   setElementState: (elementId: number, newState: Partial<FormElement>) => void
   getElementsByForm: (formId: number) => FormElement[]
@@ -68,7 +68,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
         }
       }
 
-      let newForms = { ...state.forms }
+      const newForms = { ...state.forms }
 
       if (formId) {
         const existingForm = state.forms[formId] || { elements: [] }
@@ -90,8 +90,9 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       }
     }),
 
-  validateFormData: (validateTypeId: number, elementId: number, value: any) => {
-    const validation = InputValidateFactory.factory(validateTypeId, value)
+  validateFormData: (validateTypeId: number, elementId: number, value: string) => {
+    const inputValidateFactory = new InputValidateFactory()
+    const validation = inputValidateFactory.build(validateTypeId, value)
 
     get().setElementState(elementId, {
       error: !validation.success,

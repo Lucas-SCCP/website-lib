@@ -1,14 +1,17 @@
 import React from 'react';
 import { ApiService } from './ApiService';
 import { CacheService } from './CacheService';
-import ComponentFactory from '../factories/ComponentFactory';
-import ElementFactory from '../factories/ElementFactory';
+import { ComponentFactory } from '../factories/ComponentFactory';
+import { ElementFactory } from '../factories/ElementFactory';
 import type { WebsiteType } from '../types/WebsiteType';
+import type { RawWebsiteType } from '../types/RawWebsiteType';
+import type { ComponentType } from '../types/ComponentType';
+import type { ElementType } from '../types/ElementType';
 
 class ConstructorService {
-  async fetchWebsiteFromApi(websiteId: number, apiUrl: string): Promise<WebsiteType> {
+  async fetchWebsiteFromApi(websiteId: number, apiUrl: string): Promise<RawWebsiteType> {
     const apiService = new ApiService();
-    const website = await apiService.getStructure(websiteId, apiUrl) as WebsiteType | null;
+    const website = await apiService.getStructure(websiteId, apiUrl);
     if (!website) {
       throw new Error('Site não encontrado');
     }
@@ -43,12 +46,14 @@ class ConstructorService {
       }));
   }
 
-  createComponent(component: any): React.ReactElement | null {
-    return ComponentFactory.create(component);
+  createComponent(component: ComponentType): React.ReactElement | null {
+    const componentFactory = new ComponentFactory();
+    return componentFactory.build(component);
   }
 
-  createElement(element: any): React.ReactElement | null {
-    return ElementFactory.create(element);
+  createElement(element: ElementType): React.ReactElement | null {
+    const elementFactory = new ElementFactory();
+    return elementFactory.build(element);
   }
 }
 

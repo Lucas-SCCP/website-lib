@@ -2,7 +2,7 @@ import { useEffect, MouseEvent } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
 import { ElementColWrapper } from './ElementColWrapper';
 import { UseFormStore } from '../stores/UseFormStore';
-import ButtonActionFactory from '../factories/ButtonActionFactory';
+import { ButtonActionFactory } from '../factories/ButtonActionFactory';
 import type { ElementType } from '../types/ElementType';
 import type { ButtonPropertiesType } from '../types/ButtonPropertiesType';
 
@@ -24,7 +24,6 @@ export function ButtonElement({ element }: { element: ElementType }) {
       type: 'button',
       // hidden: properties.visibilityAfter
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [element.id, element.component_id, element.properties, registerElement]);
 
   async function handleClick(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
@@ -43,7 +42,8 @@ export function ButtonElement({ element }: { element: ElementType }) {
       UseFormStore.getState().setElementState(element.id, { loading: true });
 
       if (properties.successActionId) {
-        await ButtonActionFactory.create(properties.successActionId, formData);
+        const buttonActionFactory = new ButtonActionFactory();
+        await buttonActionFactory.build(properties.successActionId, formData);
       }
 
       setTimeout(() => {

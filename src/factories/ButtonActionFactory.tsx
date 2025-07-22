@@ -1,15 +1,16 @@
 import { EmailService } from '../services/EmailService';
+import type { FormFieldsType } from '../types/FormFieldsType';
+import type { MailBodyType } from '../types/MailBodyType';
 
-class ButtonActionFactory {
-  static create(actionId: number, data: any): Promise<any> {
+export class ButtonActionFactory {
+  async build(actionId: number, data: FormFieldsType[]): Promise<MailBodyType | boolean> {
+    const emailService = new EmailService();
+    
     switch (actionId) {
       case 1:
-        const emailService = new EmailService();
         return emailService.sendMail(data);
       default:
         throw new Error('Invalid button action: ' + actionId);
     }
   }
 }
-
-export default ButtonActionFactory;

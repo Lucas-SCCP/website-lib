@@ -1,5 +1,6 @@
 import { Row, Col, Carousel } from 'react-bootstrap';
 import type { ComponentType } from '../types/ComponentType';
+import type { ElementType } from '../types/ElementType';
 
 export function CarouselComponent({ component }: { component: ComponentType}) {
   return (
@@ -7,11 +8,11 @@ export function CarouselComponent({ component }: { component: ComponentType}) {
       <Col>
         <Carousel indicators={false} className="slider">
           {Array.isArray(component.elements) &&
-            component.elements.map((element: any, index: number) => (
+            component.elements.content.map((element: ElementType, index: number) => (
               <Carousel.Item key={element.id || index}>
                 <img
-                  src={element.content?.src || ''}
-                  alt={element.content?.title || ''}
+                  src={element.properties.name || ''}
+                  alt={element.properties.title || ''}
                   style={{
                     width: '100%',
                     height: 'auto',

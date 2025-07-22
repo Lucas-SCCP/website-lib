@@ -3,7 +3,7 @@ import { Container, Row, Col, Navbar } from 'react-bootstrap';
 import type { WebsiteType } from '../types/WebsiteType';
 
 export function Header({ website }: { website: WebsiteType}) {
-  const [menu, setMenu] = useState<any>(null);
+  const [menu, setMenu] = useState<string>(null);
 
   return (
     <Container fluid>

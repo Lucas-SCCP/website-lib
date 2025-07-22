@@ -13,7 +13,7 @@ import {
 export interface ValidationResult {
   success: boolean
   message?: string
-  [key: string]: any
+  [key: string]: string | boolean
 }
 
 class InputValidateService {
@@ -54,6 +54,4 @@ class InputValidateService {
   }
 }
 
-const inputValidateService = new InputValidateService()
-
-export default inputValidateService
+export { InputValidateService };

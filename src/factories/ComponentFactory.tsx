@@ -6,8 +6,8 @@ import { CarouselComponent } from '../components/CarouselComponent'
 import { FormComponent } from '../components/FormComponent'
 import type { ComponentType } from '../types/ComponentType'
 
-class ComponentFactory {
-  static create(component: ComponentType): React.ReactElement | null {
+export class ComponentFactory {
+  build(component: ComponentType): React.ReactElement | null {
     switch (component.component_type_id) {
       case ComponentEnum.Text:
         return <TextComponent component={component} />
@@ -22,5 +22,3 @@ class ComponentFactory {
     }
   }
 }
-
-export default ComponentFactory

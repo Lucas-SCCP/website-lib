@@ -1,13 +1,14 @@
-import inputValidateService from '../services/InputValidateService';
+import { InputValidateService } from '../services/InputValidateService';
 
 type ValidationResult = {
   success: boolean
   message?: string
-  [key: string]: any
+  [key: string]: string | boolean
 }
 
-class InputValidateFactory {
-  static factory(input_validate_type: number, value: any): ValidationResult {
+export class InputValidateFactory {
+  build(input_validate_type: number, value: string): ValidationResult {
+    const inputValidateService = new InputValidateService();
     switch (input_validate_type) {
       case 1: //'name':
         return inputValidateService.nameValidation(value)
@@ -24,5 +25,3 @@ class InputValidateFactory {
     }
   }
 }
-
-export default InputValidateFactory

@@ -7,7 +7,7 @@ import type { ComponentType } from '../types/ComponentType';
 
 export function FormComponent({ component }: { component: ComponentType}) {
   const constructorService = new ConstructorService();
-  const registerForm = UseFormStore((state: any) => state.registerForm);
+  const registerForm = UseFormStore(state => state.registerForm);
 
   useEffect(() => {
     registerForm(component.id);

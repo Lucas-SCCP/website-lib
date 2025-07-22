@@ -1,7 +1,7 @@
 export interface ValidationResult {
   success: boolean
   message?: string
-  [key: string]: any
+  [key: string]: boolean | string | undefined
 }
 
 export function nameValidation(name: string): ValidationResult {

@@ -25,7 +25,6 @@ export function InputElement({ element }: { element: ElementType }) {
       type: 'input',
       validationTypeId: properties.validateTypeId,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [element.id, element.component_id, properties.name, properties.validateTypeId, registerElement]);
 
   if (hidden) return null;
