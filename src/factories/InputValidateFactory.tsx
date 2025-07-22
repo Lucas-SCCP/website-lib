@@ -1,4 +1,4 @@
-import { InputValidateService } from '../services/InputValidateService';
+import { InputValidateService } from '../services/InputValidateService'
 
 type ValidationResult = {
   success: boolean
@@ -8,7 +8,7 @@ type ValidationResult = {
 
 export class InputValidateFactory {
   build(input_validate_type: number, value: string): ValidationResult {
-    const inputValidateService = new InputValidateService();
+    const inputValidateService = new InputValidateService()
     switch (input_validate_type) {
       case 1: //'name':
         return inputValidateService.nameValidation(value)

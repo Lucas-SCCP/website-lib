@@ -5,9 +5,8 @@ import type { PropertiesType } from '../types/PropertiesType'
 import type { StylesType } from '../types/StylesType'
 
 export function TextElement({ element }: { element: ElementType }) {
-  const properties: PropertiesType = typeof element.properties === 'string'
-    ? JSON.parse(element.properties)
-    : element.properties
+  const properties: PropertiesType =
+    typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
   const style = element.style as StylesType
 
   return (
@@ -21,7 +20,7 @@ export function TextElement({ element }: { element: ElementType }) {
           fontSize: style.fontSize,
           fontWeight: style.fontWeight,
           marginTop: style.marginTop,
-          marginLeft: style.marginLeft,
+          marginLeft: style.marginLeft
         }}
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(properties.title) }}
       />

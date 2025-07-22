@@ -1,5 +1,5 @@
-import { PropertiesType } from "./PropertiesType";
+import { PropertiesType } from './PropertiesType'
 
 export interface ImagePropertiesType extends PropertiesType {
-  path: string;
+  path: string
 }

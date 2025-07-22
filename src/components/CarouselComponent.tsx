@@ -1,8 +1,8 @@
-import { Row, Col, Carousel } from 'react-bootstrap';
-import type { ComponentType } from '../types/ComponentType';
-import type { ElementType } from '../types/ElementType';
+import { Row, Col, Carousel } from 'react-bootstrap'
+import type { ComponentType } from '../types/ComponentType'
+import type { ElementType } from '../types/ElementType'
 
-export function CarouselComponent({ component }: { component: ComponentType}) {
+export function CarouselComponent({ component }: { component: ComponentType }) {
   return (
     <Row>
       <Col>
@@ -16,7 +16,7 @@ export function CarouselComponent({ component }: { component: ComponentType}) {
                   style={{
                     width: '100%',
                     height: 'auto',
-                    objectFit: 'cover',
+                    objectFit: 'cover'
                   }}
                 />
               </Carousel.Item>
@@ -24,5 +24,5 @@ export function CarouselComponent({ component }: { component: ComponentType}) {
         </Carousel>
       </Col>
     </Row>
-  );
+  )
 }

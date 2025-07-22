@@ -32,11 +32,7 @@ export function dateValidate(data: string): boolean {
   if (!dia || !mes || !ano) return false
   const d = new Date(`${ano}-${mes}-${dia}`)
   const hoje = new Date()
-  return (
-    /^\d{2}\/\d{2}\/\d{4}$/.test(data) &&
-    !isNaN(d.getTime()) &&
-    d <= hoje
-  )
+  return /^\d{2}\/\d{2}\/\d{4}$/.test(data) && !isNaN(d.getTime()) && d <= hoje
 }
 
 export function emailValidation(email: string): ValidationResult {

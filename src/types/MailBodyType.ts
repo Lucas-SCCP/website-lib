@@ -1,8 +1,8 @@
 export interface MailBodyType {
-  senderName: string;
-  sender: string;
-  recipientName: string;
-  recipient: string;
-  title: string;
-  message: string;
+  senderName: string
+  sender: string
+  recipientName: string
+  recipient: string
+  title: string
+  message: string
 }

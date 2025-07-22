@@ -54,4 +54,4 @@ class InputValidateService {
   }
 }
 
-export { InputValidateService };
+export { InputValidateService }

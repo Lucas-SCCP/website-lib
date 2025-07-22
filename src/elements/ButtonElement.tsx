@@ -1,49 +1,48 @@
-import { useEffect, MouseEvent } from 'react';
-import { Button, Spinner } from 'react-bootstrap';
-import { ElementColWrapper } from './ElementColWrapper';
-import { UseFormStore } from '../stores/UseFormStore';
-import { ButtonActionFactory } from '../factories/ButtonActionFactory';
-import type { ElementType } from '../types/ElementType';
-import type { ButtonPropertiesType } from '../types/ButtonPropertiesType';
+import { useEffect, MouseEvent } from 'react'
+import { Button, Spinner } from 'react-bootstrap'
+import { ElementColWrapper } from './ElementColWrapper'
+import { UseFormStore } from '../stores/UseFormStore'
+import { ButtonActionFactory } from '../factories/ButtonActionFactory'
+import type { ElementType } from '../types/ElementType'
+import type { ButtonPropertiesType } from '../types/ButtonPropertiesType'
 
 export function ButtonElement({ element }: { element: ElementType }) {
-  const properties: ButtonPropertiesType = typeof element.properties === 'string'
-    ? JSON.parse(element.properties)
-    : element.properties
-  const style = element.style as React.CSSProperties;
+  const properties: ButtonPropertiesType =
+    typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
+  const style = element.style as React.CSSProperties
 
-  const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
-  const loading = UseFormStore(state => state.elements[element.id]?.loading);
+  const hidden = UseFormStore((state) => state.elements[element.id]?.hidden)
+  const loading = UseFormStore((state) => state.elements[element.id]?.loading)
 
-  const showElement = UseFormStore(state => state.showElement);
-  const hideElement = UseFormStore(state => state.hideElement);
-  const registerElement = UseFormStore(state => state.registerElement);
+  const showElement = UseFormStore((state) => state.showElement)
+  const hideElement = UseFormStore((state) => state.hideElement)
+  const registerElement = UseFormStore((state) => state.registerElement)
 
   useEffect(() => {
     registerElement(element.id, element.component_id, {
-      type: 'button',
+      type: 'button'
       // hidden: properties.visibilityAfter
-    });
-  }, [element.id, element.component_id, element.properties, registerElement]);
+    })
+  }, [element.id, element.component_id, element.properties, registerElement])
 
   async function handleClick(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
     if (!properties.path) {
-      event.preventDefault();
+      event.preventDefault()
 
-      UseFormStore.getState().validateAllFields(element.component_id);
+      UseFormStore.getState().validateAllFields(element.component_id)
 
-      const formData = UseFormStore.getState().getElementsByForm(element.component_id);
-      const hasErrors = formData.some(e => e.error);
+      const formData = UseFormStore.getState().getElementsByForm(element.component_id)
+      const hasErrors = formData.some((e) => e.error)
 
       if (hasErrors) {
-        return false;
+        return false
       }
 
-      UseFormStore.getState().setElementState(element.id, { loading: true });
+      UseFormStore.getState().setElementState(element.id, { loading: true })
 
       if (properties.successActionId) {
-        const buttonActionFactory = new ButtonActionFactory();
-        await buttonActionFactory.build(properties.successActionId, formData);
+        const buttonActionFactory = new ButtonActionFactory()
+        await buttonActionFactory.build(properties.successActionId, formData)
       }
 
       setTimeout(() => {
@@ -53,28 +52,26 @@ export function ButtonElement({ element }: { element: ElementType }) {
         // }
 
         if (properties.successMessageId) {
-          showElement(properties.successMessageId);
+          showElement(properties.successMessageId)
         }
 
         if (properties.successActionId) {
-          showElement(properties.successActionId);
+          showElement(properties.successActionId)
         }
 
-        UseFormStore.getState().setElementState(element.id, { loading: false });
-      }, properties.loadingTime ?? 0);
+        UseFormStore.getState().setElementState(element.id, { loading: false })
+      }, properties.loadingTime ?? 0)
     }
   }
 
-  if (hidden) return null;
+  if (hidden) return null
 
   return (
     <ElementColWrapper element={element}>
       <Button
         as={properties.path ? 'a' : 'button'}
         type={
-          properties.type === "button" ||
-          properties.type === "submit" ||
-          properties.type === "reset"
+          properties.type === 'button' || properties.type === 'submit' || properties.type === 'reset'
             ? properties.type
             : undefined
         }

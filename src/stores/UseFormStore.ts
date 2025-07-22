@@ -40,7 +40,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
   elements: {},
 
   registerForm: (formId: number) =>
-    set(state => ({
+    set((state) => ({
       forms: {
         ...state.forms,
         [formId]: state.forms[formId] || { elements: [] }
@@ -48,7 +48,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
     })),
 
   registerElement: (elementId: number, formId: number | null = null, initialState: Partial<FormElement> = {}) =>
-    set(state => {
+    set((state) => {
       if (state.elements[elementId]) return {}
 
       const newElements = {
@@ -103,7 +103,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
   validateAllFields: (formId: number) => {
     const elements = get().getElementsByForm(formId)
 
-    elements.forEach(element => {
+    elements.forEach((element) => {
       if (element.validateTypeId) {
         get().validateFormData(element.validateTypeId, element.id, element.value)
       }
@@ -111,7 +111,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
   },
 
   setElementState: (elementId: number, newState: Partial<FormElement>) =>
-    set(state => ({
+    set((state) => ({
       elements: {
         ...state.elements,
         [elementId]: {
@@ -122,7 +122,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
     })),
 
   getElementsByForm: (formId: number): FormElement[] =>
-    get().forms[formId]?.elements.map(id => get().elements[id]) || [],
+    get().forms[formId]?.elements.map((id) => get().elements[id]) || [],
 
   showElement: (id: number) => get().setElementState(id, { hidden: false }),
   hideElement: (id: number) => get().setElementState(id, { hidden: true }),
