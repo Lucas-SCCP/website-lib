@@ -1,8 +1,7 @@
 import { Row, Col, Carousel } from 'react-bootstrap';
-
 import type { ComponentType } from '../types/ComponentType';
 
-const CarouselComponent: React.FC<{ component: ComponentType}> = ({ component }) => {
+export function CarouselComponent({ component }: { component: ComponentType}) {
   return (
     <Row>
       <Col>
@@ -25,6 +24,4 @@ const CarouselComponent: React.FC<{ component: ComponentType}> = ({ component })
       </Col>
     </Row>
   );
-};
-
-export default CarouselComponent;
+}

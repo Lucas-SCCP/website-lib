@@ -7,17 +7,17 @@ type ValidationResult = {
 }
 
 class InputValidateFactory {
-  static factory(input_validate_type: string, value: any): ValidationResult {
+  static factory(input_validate_type: number, value: any): ValidationResult {
     switch (input_validate_type) {
-      case 'name':
+      case 1: //'name':
         return inputValidateService.nameValidation(value)
-      case 'email':
+      case 2: //'email':
         return inputValidateService.emailValidation(value)
-      case 'cpf':
+      case 3: //'cpf':
         return inputValidateService.cpfValidation(value)
-      case 'phone':
+      case 4: //'phone':
         return inputValidateService.phoneValidation(value)
-      case 'birthDate':
+      case 5: //'birthDate':
         return inputValidateService.birthDateValidation(value)
       default:
         throw new Error('Input validate not found: ' + input_validate_type)

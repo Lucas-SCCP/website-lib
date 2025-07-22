@@ -1,14 +1,14 @@
 import React from 'react'
-import { ElementType } from '../types/ElementType'
 import { ElementEnum } from '../constants/ElementEnum'
-import TextElement from '../elements/TextElement'
-import ImageElement from '../elements/ImageElement'
-import InputElement from '../elements/InputElement'
-import IconElement from '../elements/IconElement'
-import ButtonElement from '../elements/ButtonElement'
-import FileElement from '../elements/FileElement'
-import AlertElement from '../elements/AlertElement'
-import LinkElement from '../elements/LinkElement'
+import { TextElement } from '../elements/TextElement'
+import { ImageElement } from '../elements/ImageElement'
+import { InputElement } from '../elements/InputElement'
+import { IconElement } from '../elements/IconElement'
+import { ButtonElement } from '../elements/ButtonElement'
+import { FileElement } from '../elements/FileElement'
+import { AlertElement } from '../elements/AlertElement'
+import { LinkElement } from '../elements/LinkElement'
+import type { ElementType } from '../types/ElementType'
 
 class ElementFactory {
   static create(element: ElementType): React.ReactElement | null {

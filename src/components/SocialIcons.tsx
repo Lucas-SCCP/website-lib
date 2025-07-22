@@ -2,7 +2,7 @@ import { Row, Col } from 'react-bootstrap';
 import { IconType } from 'react-icons';
 import { FaFacebookF, FaInstagram, FaLink } from 'react-icons/fa';
 
-export const SocialIcons: React.FC = () => {
+export function SocialIcons() {
   const elements = [
     {
       id: 1,
@@ -35,6 +35,4 @@ export const SocialIcons: React.FC = () => {
       ))}
     </Row>
   )
-};
-
-export default SocialIcons;
+}

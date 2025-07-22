@@ -1,17 +1,14 @@
-import React from 'react'
 import DOMPurify from 'dompurify'
+import { ElementColWrapper } from './ElementColWrapper'
+import type { ElementType } from '../types/ElementType'
+import type { PropertiesType } from '../types/PropertiesType'
+import type { StylesType } from '../types/StylesType'
 
-import { ElementType } from '../types/ElementType'
-import { PropertyType } from '../types/PropertyType'
-import { StyleType } from '../types/StyleType'
-
-import ElementColWrapper from './ElementColWrapper'
-
-const TextElement: React.FC<{ element: ElementType }> = ({ element }) => {
-  const properties: PropertyType = typeof element.properties === 'string'
+export function TextElement({ element }: { element: ElementType }) {
+  const properties: PropertiesType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style as StyleType
+  const style = element.style as StylesType
 
   return (
     <ElementColWrapper element={element}>
@@ -26,10 +23,8 @@ const TextElement: React.FC<{ element: ElementType }> = ({ element }) => {
           marginTop: style.marginTop,
           marginLeft: style.marginLeft,
         }}
-        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(properties.text) }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(properties.title) }}
       />
     </ElementColWrapper>
   )
 }
-
-export default TextElement

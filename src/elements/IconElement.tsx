@@ -1,17 +1,15 @@
 import React, { Suspense } from 'react';
 import { IconType } from 'react-icons';
+import { ElementColWrapper } from './ElementColWrapper';
+import type { ElementType } from '../types/ElementType';
+import type { PropertiesType } from '../types/PropertiesType';
 
-import { ElementType } from '../types/ElementType';
-import { PropertyType } from '../types/PropertyType';
-
-import ElementColWrapper from './ElementColWrapper';
-
-const IconElement: React.FC<{ element: ElementType }> = ({ element }) => {
-  const properties: PropertyType = typeof element.properties === 'string'
+export function IconElement({ element }: { element: ElementType }) {
+  const properties: PropertiesType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
   const name = properties.name;
-  const style = properties.style as React.CSSProperties;
+  const style = element.style as React.CSSProperties;
 
   // Dynamic lazy import for react-icons/fa
   const LazyIcon = React.lazy<React.FC<{ size?: number; className?: string; style?: React.CSSProperties }>>(
@@ -31,7 +29,5 @@ const IconElement: React.FC<{ element: ElementType }> = ({ element }) => {
         <LazyIcon size={20} className="texto-primaria" style={{ marginRight: '8px', ...style }} />
       </Suspense>
     </ElementColWrapper>
-  );
-};
-
-export default IconElement;
+  )
+}

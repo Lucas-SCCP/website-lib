@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { SocialIcons } from './SocialIcons';
 
-export const Footer: React.FC = () => {
+export function Footer() {
   return (
     <footer className='footer'>
       <Container style={{ background: '#000', padding: '30px', fontSize: '14px', color: '#BBB' }}>
@@ -36,6 +36,4 @@ export const Footer: React.FC = () => {
       </Container>
     </footer>
   );
-};
-
-export default Footer;
+}

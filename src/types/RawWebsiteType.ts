@@ -43,35 +43,35 @@ export type RawWebsiteType = {
           updated_at: string;
           deleted_at: string | null;
           properties: {
-            title: string,
             name: string,
-            text: string,
-            placeholder: string,
-            type?: string,
-            validateType?: string,
-            loadingMessage?: string,
-            action?: string,
-            successMessageId?: number,
-            successActionId?: number,
-            href?: string,
-            message?: string,
-            variant?: string,
-            visibilityAfter?: boolean,
-            hideButtonAfter?: boolean,
-            loadingTime?: number,
-            mask: string,
+            title: string,
+            message: string,
+            type: string,
+
+            path?: string,
+
+            mask?: string,
+            placeholder?: string,
             required?: boolean,
-            style: {
-              color: string,
-              fontSize: string,
-              textAlign: string,
-              fontWeight: string,
-              display: string,
-              height: string,
-              alignItems: string,
-              marginTop: string,
-              marginLeft: string
-            }
+            validateTypeId?: number,
+            
+            loadingTime?: number,
+            hideOnClick?: boolean,
+            successActionId?: number,
+            errorActionId?: number,
+            successMessageId?: number,
+            errorMessageId?: number,
+          };
+          style: {
+            color: string,
+            fontSize: string,
+            textAlign: string,
+            fontWeight: string,
+            display: string,
+            height: string,
+            alignItems: string,
+            marginTop: string,
+            marginLeft: string
           };
         }]
       };

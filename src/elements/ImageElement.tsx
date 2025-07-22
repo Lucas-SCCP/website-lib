@@ -1,15 +1,16 @@
-import React from 'react';
+import { ElementColWrapper } from './ElementColWrapper';
+import type { ElementType } from '../types/ElementType';
+import type { ImagePropertiesType } from '../types/ImagePropertiesType';
 
-import { ElementType } from '../types/ElementType';
-
-import ElementColWrapper from './ElementColWrapper';
-
-const ImageElement: React.FC<{element: ElementType}> = ({ element }) => {
+export function ImageElement({ element }: { element: ElementType }) {
+  const properties: ImagePropertiesType = typeof element.properties === 'string'
+      ? JSON.parse(element.properties)
+      : element.properties
   return (
     <ElementColWrapper element={element}>
       <img
-        src={element.properties.href}
-        alt={element.properties.title ?? ''}
+        src={properties.path}
+        alt={properties.title ?? ''}
         style={{
           width: '100%',
           height: 'auto',
@@ -17,7 +18,5 @@ const ImageElement: React.FC<{element: ElementType}> = ({ element }) => {
         }}
       />
     </ElementColWrapper>
-  );
-};
-
-export default ImageElement;
+  )
+}

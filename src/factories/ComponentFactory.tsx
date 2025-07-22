@@ -1,10 +1,10 @@
 import React from 'react'
-import { ComponentType } from '../types/ComponentType'
 import { ComponentEnum } from '../constants/ComponentEnum'
-import TextComponent from '../components/TextComponent'
-import ListComponent from '../components/ListComponent'
-import CarouselComponent from '../components/CarouselComponent'
-import FormComponent from '../components/FormComponent'
+import { TextComponent } from '../components/TextComponent'
+import { ListComponent } from '../components/ListComponent'
+import { CarouselComponent } from '../components/CarouselComponent'
+import { FormComponent } from '../components/FormComponent'
+import type { ComponentType } from '../types/ComponentType'
 
 class ComponentFactory {
   static create(component: ComponentType): React.ReactElement | null {

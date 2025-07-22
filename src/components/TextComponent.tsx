@@ -1,11 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-
-import { ComponentType } from '../types/ComponentType';
-
 import { ConstructorService } from '../services/ConstructorService';
+import type { ComponentType } from '../types/ComponentType';
 
-export const TextComponent: React.FC<{ component: ComponentType}> = ({ component }) => {
+export function TextComponent({ component }: { component: ComponentType}) {
   const constructorService = new ConstructorService();
 
   return (
@@ -18,6 +16,4 @@ export const TextComponent: React.FC<{ component: ComponentType}> = ({ component
       </Row>
     </Col>
   )
-};
-
-export default TextComponent;
+}

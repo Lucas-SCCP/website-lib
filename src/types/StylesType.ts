@@ -1,4 +1,4 @@
-export interface StyleType {
+export interface StylesType {
   color: string,
   fontSize: string,
   textAlign: string,

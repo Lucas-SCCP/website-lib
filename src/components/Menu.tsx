@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 interface MenuLink {
@@ -26,7 +25,7 @@ interface MenuProps {
   menu?: MenuElement[] | null;
 }
 
-const Menu: React.FC<MenuProps> = ({ menu }) => {
+export function Menu({ menu }: MenuProps) {
 
   if (menu === undefined) {
     return <div>Carregando menu</div>;
@@ -70,7 +69,5 @@ const Menu: React.FC<MenuProps> = ({ menu }) => {
         </Nav>
       </Navbar.Collapse>
     </>
-  );
-};
-
-export default Menu;
+  )
+}

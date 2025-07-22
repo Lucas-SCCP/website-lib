@@ -1,11 +1,9 @@
 import React from 'react';
 import { ApiService } from './ApiService';
 import { CacheService } from './CacheService';
-
-import { WebsiteType } from '../types/WebsiteType';
-
 import ComponentFactory from '../factories/ComponentFactory';
 import ElementFactory from '../factories/ElementFactory';
+import type { WebsiteType } from '../types/WebsiteType';
 
 class ConstructorService {
   async fetchWebsiteFromApi(websiteId: number, apiUrl: string): Promise<WebsiteType> {

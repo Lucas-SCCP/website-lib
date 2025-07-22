@@ -1,12 +1,9 @@
 import { Col } from 'react-bootstrap';
-
-import { ComponentType } from '../types/ComponentType';
-
-import { ElementEnum } from '../constants/ElementEnum'
-
 import { ConstructorService } from '../services/ConstructorService';
+import { ElementEnum } from '../constants/ElementEnum'
+import type { ComponentType } from '../types/ComponentType';
 
-export const ListComponent: React.FC<{ component: ComponentType }> = ({ component }) => {
+export function ListComponent({ component }: { component: ComponentType }) {
   const constructorService = new ConstructorService();
 
   const contents = Object.values(component.elements.content).sort((a, b) => a.sort - b.sort)
@@ -41,6 +38,4 @@ export const ListComponent: React.FC<{ component: ComponentType }> = ({ componen
       </ul>
     </Col>
   )
-};
-
-export default ListComponent;
+}

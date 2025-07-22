@@ -1,20 +1,16 @@
 import { Outlet } from 'react-router-dom';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import type { WebsiteType } from '../types/WebsiteType';
 
-import Header from './Header';
-import Footer from './Footer';
-
-export const MainLayout: React.FC<{ logo: string }> = ({ logo }) => {
+export function MainLayout({ website }: { website: WebsiteType }) {
   return (
     <>
-      <Header
-        logo={logo}
-      />
-        <main className='background-image'>
-          <Outlet />
-        </main>
+      <Header website={website}/>
+      <main className='background-image'>
+        <Outlet />
+      </main>
       <Footer />
     </>
   )
-};
-
-export default MainLayout;
+}

@@ -1,20 +1,16 @@
 import { useEffect, MouseEvent } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
-
-import { ElementType } from '../types/ElementType';
-import { PropertyType } from '../types/PropertyType';
-
-import ElementColWrapper from './ElementColWrapper';
-
-import UseFormStore from '../stores/UseFormStore';
-
+import { ElementColWrapper } from './ElementColWrapper';
+import { UseFormStore } from '../stores/UseFormStore';
 import ButtonActionFactory from '../factories/ButtonActionFactory';
+import type { ElementType } from '../types/ElementType';
+import type { ButtonPropertiesType } from '../types/ButtonPropertiesType';
 
-const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
-  const properties: PropertyType = typeof element.properties === 'string'
+export function ButtonElement({ element }: { element: ElementType }) {
+  const properties: ButtonPropertiesType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style as React.CSSProperties;
+  const style = element.style as React.CSSProperties;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
   const loading = UseFormStore(state => state.elements[element.id]?.loading);
@@ -26,13 +22,13 @@ const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
   useEffect(() => {
     registerElement(element.id, element.component_id, {
       type: 'button',
-      hidden: properties.visibilityAfter
+      // hidden: properties.visibilityAfter
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [element.id, element.component_id, element.properties, registerElement]);
 
   async function handleClick(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
-    if (!properties.href) {
+    if (!properties.path) {
       event.preventDefault();
 
       UseFormStore.getState().validateAllFields(element.component_id);
@@ -46,14 +42,15 @@ const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
 
       UseFormStore.getState().setElementState(element.id, { loading: true });
 
-      if (properties.action) {
-        await ButtonActionFactory.create(properties.action, formData);
+      if (properties.successActionId) {
+        await ButtonActionFactory.create(properties.successActionId, formData);
       }
 
       setTimeout(() => {
-        if (properties.hideButtonAfter) {
-          hideElement(element.id);
-        }
+        // @TODO - criar funcao que verifica se o id do botao esta como successActionId ou errorActionId de outro para esconde-lo ao iniciar
+        // if (properties.hideButtonAfter) {
+        //   hideElement(element.id);
+        // }
 
         if (properties.successMessageId) {
           showElement(properties.successMessageId);
@@ -73,7 +70,7 @@ const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
   return (
     <ElementColWrapper element={element}>
       <Button
-        as={properties.href ? 'a' : 'button'}
+        as={properties.path ? 'a' : 'button'}
         type={
           properties.type === "button" ||
           properties.type === "submit" ||
@@ -81,10 +78,10 @@ const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
             ? properties.type
             : undefined
         }
-        variant={properties.variant}
-        href={properties.href}
-        target={properties.href ? '_blank' : undefined}
-        rel={properties.href ? 'noopener noreferrer' : undefined}
+        variant={properties.type}
+        href={properties.path}
+        target={properties.path ? '_blank' : undefined}
+        rel={properties.path ? 'noopener noreferrer' : undefined}
         disabled={loading}
         onClick={handleClick}
         className="cor-primaria"
@@ -93,14 +90,12 @@ const ButtonElement: React.FC<{ element: ElementType }> = ({ element }) => {
         {loading ? (
           <>
             <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
-            {' ' + (properties.loadingMessage ?? '')}
+            {' ' + (properties.message ?? '')}
           </>
         ) : (
           properties.title
         )}
       </Button>
     </ElementColWrapper>
-  );
-};
-
-export default ButtonElement;
+  )
+}

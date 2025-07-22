@@ -1,10 +1,12 @@
-import type { PropertyType } from "./PropertyType";
+import type { PropertiesType } from "./PropertiesType";
+import type { StylesType } from "./StylesType";
 
 export interface ElementType {
   id: number;
   component_id: number;
   element_type_id: number;
-  properties: PropertyType;
+  properties: PropertiesType;
+  style: StylesType;
   size: number;
   component_parent: number | null;
   sort: number;

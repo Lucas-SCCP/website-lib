@@ -1,14 +1,11 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Form, Row } from 'react-bootstrap';
-
-import { ComponentType } from '../types/ComponentType';
-
-import UseFormStore from '../stores/UseFormStore';
-
+import { UseFormStore } from '../stores/UseFormStore';
 import { ConstructorService } from '../services/ConstructorService';
+import type { ComponentType } from '../types/ComponentType';
 
-const FormComponent: React.FC<{ component: ComponentType}> = ({ component }) => {
+export function FormComponent({ component }: { component: ComponentType}) {
   const constructorService = new ConstructorService();
   const registerForm = UseFormStore((state: any) => state.registerForm);
 
@@ -23,7 +20,7 @@ const FormComponent: React.FC<{ component: ComponentType}> = ({ component }) => 
     } catch (error) {
       console.error('Erro ao enviar o formulário:', error);
     }
-  };
+  }
 
   return (
     <Form noValidate onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
@@ -34,7 +31,5 @@ const FormComponent: React.FC<{ component: ComponentType}> = ({ component }) => 
         })}
       </Row>
     </Form>
-  );
-};
-
-export default FormComponent;
+  )
+}

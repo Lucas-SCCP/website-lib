@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import InputMask from 'react-input-mask';
+import { ElementColWrapper } from './ElementColWrapper';
+import { UseFormStore } from '../stores/UseFormStore';
+import type { ElementType } from '../types/ElementType';
+import type { InputPropertiesType } from '../types/InputPropertiesType';
 
-import { ElementType } from '../types/ElementType';
-import { PropertyType } from '../types/PropertyType';
-
-import ElementColWrapper from './ElementColWrapper';
-
-import UseFormStore from '../stores/UseFormStore';
-
-const InputElement: React.FC<{ element: ElementType }> = ({ element }) => {
-  const properties: PropertyType = typeof element.properties === 'string'
+export function InputElement({ element }: { element: ElementType }) {
+  const properties: InputPropertiesType = typeof element.properties === 'string'
     ? JSON.parse(element.properties)
     : element.properties
-  const style = properties.style as React.CSSProperties;
+  const style = element.style as React.CSSProperties;
 
   const hidden = UseFormStore(state => state.elements[element.id]?.hidden);
   const error = UseFormStore(state => state.elements[element.id]?.error);
@@ -26,10 +23,10 @@ const InputElement: React.FC<{ element: ElementType }> = ({ element }) => {
     registerElement(element.id, element.component_id, {
       name: properties.name,
       type: 'input',
-      validationType: properties.validateType,
+      validationTypeId: properties.validateTypeId,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [element.id, element.component_id, properties.name, properties.validateType, registerElement]);
+  }, [element.id, element.component_id, properties.name, properties.validateTypeId, registerElement]);
 
   if (hidden) return null;
 
@@ -41,7 +38,7 @@ const InputElement: React.FC<{ element: ElementType }> = ({ element }) => {
           as={InputMask}
           mask={properties.mask}
           onChange={e => UseFormStore.getState().setElementState(element.id, { value: e.target.value })}
-          onBlur={e => validateFormData(properties.validateType, element.id, e.target.value)}
+          onBlur={e => validateFormData(properties.validateTypeId, element.id, e.target.value)}
           required={properties.required}
           name={properties.name}
           placeholder={properties.placeholder}
@@ -53,7 +50,5 @@ const InputElement: React.FC<{ element: ElementType }> = ({ element }) => {
         </Form.Control.Feedback>
       </Form.Group>
     </ElementColWrapper>
-  );
-};
-
-export default InputElement;
+  )
+}

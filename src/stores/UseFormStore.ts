@@ -11,7 +11,7 @@ export interface FormElement {
   hidden: boolean
   error: boolean
   errorMessage: string | null
-  validationType: string | null
+  validateTypeId: number | null
   [key: string]: any
 }
 
@@ -26,7 +26,7 @@ export interface FormStoreState {
 
   registerForm: (formId: number) => void
   registerElement: (elementId: number, formId?: number | null, initialState?: Partial<FormElement>) => void
-  validateFormData: (type: string, elementId: number, value: any) => void
+  validateFormData: (validateTypeId: number, elementId: number, value: any) => void
   validateAllFields: (formId: number) => void
   setElementState: (elementId: number, newState: Partial<FormElement>) => void
   getElementsByForm: (formId: number) => FormElement[]
@@ -63,7 +63,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
           hidden: false,
           error: false,
           errorMessage: null,
-          validationType: null,
+          validateTypeId: null,
           ...initialState
         }
       }
@@ -90,8 +90,8 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       }
     }),
 
-  validateFormData: (type: string, elementId: number, value: any) => {
-    const validation = InputValidateFactory.factory(type, value)
+  validateFormData: (validateTypeId: number, elementId: number, value: any) => {
+    const validation = InputValidateFactory.factory(validateTypeId, value)
 
     get().setElementState(elementId, {
       error: !validation.success,
@@ -103,8 +103,8 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
     const elements = get().getElementsByForm(formId)
 
     elements.forEach(element => {
-      if (element.validationType) {
-        get().validateFormData(element.validationType, element.id, element.value)
+      if (element.validateTypeId) {
+        get().validateFormData(element.validateTypeId, element.id, element.value)
       }
     })
   },
@@ -128,4 +128,4 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
   setLoading: (id: number, loading: boolean) => get().setElementState(id, { loading })
 }))
 
-export default UseFormStore
+export { UseFormStore }
