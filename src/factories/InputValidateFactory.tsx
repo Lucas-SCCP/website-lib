@@ -1,4 +1,5 @@
 import { InputValidateService } from '../services/InputValidateService'
+import { InputValidateEnum } from '../constants/InputValidateEnum'
 
 type ValidationResult = {
   success: boolean
@@ -10,15 +11,15 @@ export class InputValidateFactory {
   build(input_validate_type: number, value: string): ValidationResult {
     const inputValidateService = new InputValidateService()
     switch (input_validate_type) {
-      case 1: //'name':
+      case InputValidateEnum.Name:
         return inputValidateService.nameValidation(value)
-      case 2: //'email':
+      case InputValidateEnum.Email:
         return inputValidateService.emailValidation(value)
-      case 3: //'cpf':
+      case InputValidateEnum.Cpf:
         return inputValidateService.cpfValidation(value)
-      case 4: //'phone':
+      case InputValidateEnum.Phone:
         return inputValidateService.phoneValidation(value)
-      case 5: //'birthDate':
+      case InputValidateEnum.BirthDate:
         return inputValidateService.birthDateValidation(value)
       default:
         throw new Error('Input validate not found: ' + input_validate_type)

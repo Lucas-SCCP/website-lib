@@ -6,7 +6,7 @@ import type { PropertiesType } from '../types/PropertiesType'
 export function TextElement({ element }: { readonly element: ElementType }) {
   const properties: PropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
-  const style = element.style
+  const style = element.styles
 
   return (
     <ElementColWrapper element={element}>

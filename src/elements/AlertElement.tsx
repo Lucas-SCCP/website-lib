@@ -8,7 +8,7 @@ import type { PropertiesType } from '../types/PropertiesType'
 export function AlertElement({ element }: { readonly element: ElementType }) {
   const properties: PropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
-  const style = element.style as React.CSSProperties
+  const style = element.styles as React.CSSProperties
 
   const hidden = UseFormStore((state) => state.elements[element.id]?.hidden)
 

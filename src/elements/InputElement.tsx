@@ -9,7 +9,7 @@ import type { InputPropertiesType } from '../types/InputPropertiesType'
 export function InputElement({ element }: { readonly element: ElementType }) {
   const properties: InputPropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
-  const style = element.style as React.CSSProperties
+  const style = element.styles as React.CSSProperties
 
   const hidden = UseFormStore((state) => state.elements[element.id]?.hidden)
   const error = UseFormStore((state) => state.elements[element.id]?.error)
@@ -22,9 +22,9 @@ export function InputElement({ element }: { readonly element: ElementType }) {
     registerElement(element.id, element.component_id, {
       name: properties.name,
       type: 'input',
-      validationTypeId: properties.validateTypeId
+      inputValidateId: properties.inputValidateId
     })
-  }, [element.id, element.component_id, properties.name, properties.validateTypeId, registerElement])
+  }, [element.id, element.component_id, properties.name, properties.inputValidateId, registerElement])
 
   if (hidden) return null
 
@@ -36,7 +36,7 @@ export function InputElement({ element }: { readonly element: ElementType }) {
           as={InputMask}
           mask={properties.mask}
           onChange={(e) => UseFormStore.getState().setElementState(element.id, { value: e.target.value })}
-          onBlur={(e) => validateFormData(properties.validateTypeId, element.id, e.target.value)}
+          onBlur={(e) => validateFormData(properties.inputValidateId, element.id, e.target.value)}
           required={properties.required}
           name={properties.name}
           placeholder={properties.placeholder}

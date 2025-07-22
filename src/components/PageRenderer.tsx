@@ -2,7 +2,6 @@ import { Suspense } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import { ConstructorService } from '../services/ConstructorService'
-import { AnalyticsService } from '../services/AnalyticsService'
 import type { ComponentType } from '../types/ComponentType'
 
 export function PageRenderer({ ga4, title, components }: { readonly ga4: string; readonly title: string; readonly components: ComponentType[] }) {
@@ -19,7 +18,7 @@ export function PageRenderer({ ga4, title, components }: { readonly ga4: string;
       <Container>
         <Row id="page" style={{ padding: '20px' }}>
           <Col xs={12} sm={12} md={12} lg={{ span: 6, offset: 3 }} className="destaque border-primaria">
-            {components.map((component, index) => (
+            {components.map((component) => (
               <Row id="component" key={component.id}>
                 {constructorService.createComponent(component)}
               </Row>

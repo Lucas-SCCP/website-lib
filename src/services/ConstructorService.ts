@@ -3,7 +3,6 @@ import { ApiService } from './ApiService'
 import { CacheService } from './CacheService'
 import { ComponentFactory } from '../factories/ComponentFactory'
 import { ElementFactory } from '../factories/ElementFactory'
-import type { WebsiteType } from '../types/WebsiteType'
 import type { RawWebsiteType } from '../types/RawWebsiteType'
 import type { ComponentType } from '../types/ComponentType'
 import type { ElementType } from '../types/ElementType'
@@ -21,9 +20,9 @@ class ConstructorService {
     return website
   }
 
-  async fetchWebsiteFromCache(): Promise<WebsiteType> {
+  async fetchWebsiteFromCache(): Promise<RawWebsiteType> {
     const cacheService = new CacheService()
-    const website = cacheService.getStructure() as WebsiteType | null
+    const website = cacheService.getStructure()
     if (!website) {
       throw new Error('Site não encontrado')
     }

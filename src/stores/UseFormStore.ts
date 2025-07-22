@@ -11,7 +11,7 @@ export interface FormElement {
   hidden: boolean
   error: boolean
   errorMessage: string | null
-  validateTypeId: number | null
+  inputValidateId: number | null
   [key: string]: string | number | boolean | null
 }
 
@@ -26,7 +26,7 @@ export interface FormStoreState {
 
   registerForm: (formId: number) => void
   registerElement: (elementId: number, formId?: number | null, initialState?: Partial<FormElement>) => void
-  validateFormData: (validateTypeId: number, elementId: number, value: string) => void
+  validateFormData: (inputValidateId: number, elementId: number, value: string) => void
   validateAllFields: (formId: number) => void
   setElementState: (elementId: number, newState: Partial<FormElement>) => void
   getElementsByForm: (formId: number) => FormElement[]
@@ -63,7 +63,7 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
           hidden: false,
           error: false,
           errorMessage: null,
-          validateTypeId: null,
+          inputValidateId: null,
           ...initialState
         }
       }
@@ -90,9 +90,9 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
       }
     }),
 
-  validateFormData: (validateTypeId: number, elementId: number, value: string) => {
+  validateFormData: (inputValidateId: number, elementId: number, value: string) => {
     const inputValidateFactory = new InputValidateFactory()
-    const validation = inputValidateFactory.build(validateTypeId, value)
+    const validation = inputValidateFactory.build(inputValidateId, value)
 
     get().setElementState(elementId, {
       error: !validation.success,
@@ -104,8 +104,8 @@ const UseFormStore = create<FormStoreState>((set, get) => ({
     const elements = get().getElementsByForm(formId)
 
     elements.forEach((element) => {
-      if (element.validateTypeId) {
-        get().validateFormData(element.validateTypeId, element.id, element.value)
+      if (element.inputValidateId) {
+        get().validateFormData(element.inputValidateId, element.id, element.value)
       }
     })
   },

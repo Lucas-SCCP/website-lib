@@ -26,7 +26,7 @@ export function SocialIcons() {
 
   return (
     <Row>
-      {elements.map((element, index) => (
+      {elements.map((element) => (
         <Col key={element.id} className="text-center social-icons texto-primaria">
           <a href={element.url} target="_blank" rel="noreferrer" aria-label={element.description}>
             <element.icon />

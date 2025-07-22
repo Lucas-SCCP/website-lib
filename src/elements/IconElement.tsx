@@ -8,7 +8,7 @@ export function IconElement({ element }: { readonly element: ElementType }) {
   const properties: PropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
   const name = properties.name
-  const style = element.style as React.CSSProperties
+  const style = element.styles as React.CSSProperties
 
   // Dynamic lazy import for react-icons/fa
   const LazyIcon = React.lazy<React.FC<{ size?: number; className?: string; style?: React.CSSProperties }>>(() =>

@@ -4,5 +4,5 @@ export interface InputPropertiesType extends PropertiesType {
   mask: string
   placeholder: string
   required: boolean
-  validateTypeId: number
+  inputValidateId: number
 }
