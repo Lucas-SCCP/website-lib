@@ -4,7 +4,7 @@ import { ConstructorService } from '../services/ConstructorService'
 import type { ComponentType } from '../types/ComponentType'
 import type { ElementType } from '../types/ElementType'
 
-export function TextComponent({ component }: { component: ComponentType }) {
+export function TextComponent({ component }: { readonly component: ComponentType }) {
   const constructorService = new ConstructorService()
 
   return (

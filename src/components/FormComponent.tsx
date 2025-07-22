@@ -1,11 +1,10 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Form, Row } from 'react-bootstrap'
 import { UseFormStore } from '../stores/UseFormStore'
 import { ConstructorService } from '../services/ConstructorService'
 import type { ComponentType } from '../types/ComponentType'
 
-export function FormComponent({ component }: { component: ComponentType }) {
+export function FormComponent({ component }: { readonly component: ComponentType }) {
   const constructorService = new ConstructorService()
   const registerForm = UseFormStore((state) => state.registerForm)
 

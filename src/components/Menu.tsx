@@ -8,6 +8,7 @@ interface MenuLink {
 }
 
 interface MenuDropdownItem {
+  id: number
   name: string
   path: string
 }
@@ -25,7 +26,7 @@ interface MenuProps {
   menu?: MenuElement[] | null
 }
 
-export function Menu({ menu }: MenuProps) {
+export function Menu({ menu }: Readonly<MenuProps>) {
   if (menu === undefined) {
     return <div>Carregando menu</div>
   }
@@ -50,8 +51,8 @@ export function Menu({ menu }: MenuProps) {
             } else if (element.type === 'dropdown') {
               return (
                 <NavDropdown key={element.id} title={element.name} id="basic-nav-dropdown" className="menu">
-                  {element.items.map((item, idx) => (
-                    <NavDropdown.Item key={idx} href={item.path}>
+                  {element.items.map((item) => (
+                    <NavDropdown.Item key={item.id} href={item.path}>
                       {item.name}
                     </NavDropdown.Item>
                   ))}

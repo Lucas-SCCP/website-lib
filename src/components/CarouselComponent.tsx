@@ -2,7 +2,7 @@ import { Row, Col, Carousel } from 'react-bootstrap'
 import type { ComponentType } from '../types/ComponentType'
 import type { ElementType } from '../types/ElementType'
 
-export function CarouselComponent({ component }: { component: ComponentType }) {
+export function CarouselComponent({ component }: { readonly component: ComponentType }) {
   return (
     <Row>
       <Col>

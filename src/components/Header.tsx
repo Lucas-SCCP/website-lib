@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Container, Row, Col, Navbar } from 'react-bootstrap'
 import type { WebsiteType } from '../types/WebsiteType'
 
-export function Header({ website }: { website: WebsiteType }) {
+export function Header({ website }: { readonly website: WebsiteType }) {
   const [menu, setMenu] = useState<string>(null)
 
   return (

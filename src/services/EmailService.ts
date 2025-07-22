@@ -21,7 +21,7 @@ class EmailService {
       return true
     } catch (error: unknown) {
       console.error('Erro ao buscar dados da API:', error)
-      throw new Error(error instanceof Error ? error.message : String(error))
+      throw new Error(error instanceof Error ? error.message : JSON.stringify(error))
     }
   }
 

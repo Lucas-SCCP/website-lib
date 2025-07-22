@@ -12,7 +12,7 @@ class CacheService {
       return JSON.parse(cachedData)
     } catch (error: unknown) {
       console.error('Erro ao buscar dados do cache:', error)
-      throw new Error(error instanceof Error ? error.message : String(error))
+      throw new Error(error instanceof Error ? error.message : JSON.stringify(error))
     }
   }
 }

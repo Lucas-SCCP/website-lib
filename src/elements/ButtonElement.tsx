@@ -6,7 +6,7 @@ import { ButtonActionFactory } from '../factories/ButtonActionFactory'
 import type { ElementType } from '../types/ElementType'
 import type { ButtonPropertiesType } from '../types/ButtonPropertiesType'
 
-export function ButtonElement({ element }: { element: ElementType }) {
+export function ButtonElement({ element }: { readonly element: ElementType }) {
   const properties: ButtonPropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
   const style = element.style as React.CSSProperties
@@ -86,7 +86,9 @@ export function ButtonElement({ element }: { element: ElementType }) {
       >
         {loading ? (
           <>
-            <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+            <output aria-busy="true">
+              <Spinner as="span" animation="border" size="sm" aria-hidden="true" />
+            </output>
             {' ' + (properties.message ?? '')}
           </>
         ) : (

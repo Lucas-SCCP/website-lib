@@ -4,7 +4,7 @@ import { ElementColWrapper } from './ElementColWrapper'
 import type { ElementType } from '../types/ElementType'
 import type { PropertiesType } from '../types/PropertiesType'
 
-export function IconElement({ element }: { element: ElementType }) {
+export function IconElement({ element }: { readonly element: ElementType }) {
   const properties: PropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
   const name = properties.name

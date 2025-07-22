@@ -6,7 +6,7 @@ import { UseFormStore } from '../stores/UseFormStore'
 import type { ElementType } from '../types/ElementType'
 import type { InputPropertiesType } from '../types/InputPropertiesType'
 
-export function InputElement({ element }: { element: ElementType }) {
+export function InputElement({ element }: { readonly element: ElementType }) {
   const properties: InputPropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
   const style = element.style as React.CSSProperties

@@ -5,7 +5,7 @@ import { ConstructorService } from '../services/ConstructorService'
 import { AnalyticsService } from '../services/AnalyticsService'
 import type { ComponentType } from '../types/ComponentType'
 
-export function PageRenderer({ ga4, title, components }: { ga4: string; title: string; components: ComponentType[] }) {
+export function PageRenderer({ ga4, title, components }: { readonly ga4: string; readonly title: string; readonly components: ComponentType[] }) {
   const constructorService = new ConstructorService()
   return (
     <Suspense fallback={<div>Carregando elementos...</div>}>

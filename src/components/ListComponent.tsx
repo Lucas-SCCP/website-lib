@@ -3,7 +3,7 @@ import { ConstructorService } from '../services/ConstructorService'
 import { ElementEnum } from '../constants/ElementEnum'
 import type { ComponentType } from '../types/ComponentType'
 
-export function ListComponent({ component }: { component: ComponentType }) {
+export function ListComponent({ component }: { readonly component: ComponentType }) {
   const constructorService = new ConstructorService()
 
   const contents = Object.values(component.elements.content).sort((a, b) => a.sort - b.sort)
