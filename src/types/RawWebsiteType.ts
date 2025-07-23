@@ -48,6 +48,7 @@ export type RawWebsiteType = {
               title: string
               message: string
               type: string
+              startHidden: boolean
 
               path?: string
 
@@ -58,6 +59,7 @@ export type RawWebsiteType = {
 
               loadingTime?: number
               hideOnClick?: boolean
+              actionId?: number
               successActionId?: number
               errorActionId?: number
               successMessageId?: number
