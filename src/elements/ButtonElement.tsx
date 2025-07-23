@@ -20,10 +20,10 @@ export function ButtonElement({ element }: { readonly element: ElementType }) {
 
   useEffect(() => {
     registerElement(element.id, element.component_id, {
-      type: 'button'
-      // hidden: properties.visibilityAfter
+      type: 'button',
+      hidden: properties.startHidden
     })
-  }, [element.id, element.component_id, element.properties, registerElement])
+  }, [element.id, element.component_id, element.properties, properties.startHidden, registerElement])
 
   async function handleClick(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
     if (!properties.path) {
@@ -40,16 +40,15 @@ export function ButtonElement({ element }: { readonly element: ElementType }) {
 
       UseFormStore.getState().setElementState(element.id, { loading: true })
 
-      if (properties.successActionId) {
+      if (properties.actionId) {
         const buttonActionFactory = new ButtonActionFactory()
-        await buttonActionFactory.build(properties.successActionId, formData)
+        await buttonActionFactory.build(properties.actionId, formData)
       }
 
       setTimeout(() => {
-        // @TODO - criar funcao que verifica se o id do botao esta como successActionId ou errorActionId de outro para esconde-lo ao iniciar
-        // if (properties.hideButtonAfter) {
-        //   hideElement(element.id);
-        // }
+        if (properties.hideOnClick) {
+          hideElement(element.id);
+        }
 
         if (properties.successMessageId) {
           showElement(properties.successMessageId)

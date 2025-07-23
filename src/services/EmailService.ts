@@ -2,10 +2,17 @@ import type { FormFieldsType } from '../types/FormFieldsType'
 import type { MailBodyType } from '../types/MailBodyType'
 
 class EmailService {
+
+  private urlApi: string
+
+  constructor(urlApi: string) {
+    this.urlApi = urlApi
+  }
+
   async sendMail(params: FormFieldsType[]): Promise<boolean> {
     try {
       const body = this.createBody(params)
-      const response = await fetch(`URL_API/send-mail`, {
+      const response = await fetch(`${this.urlApi}/send-mail`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

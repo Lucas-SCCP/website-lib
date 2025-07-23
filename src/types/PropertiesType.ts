@@ -3,4 +3,5 @@ export interface PropertiesType {
   title: string
   message: string
   type: string
+  startHidden: boolean
 }

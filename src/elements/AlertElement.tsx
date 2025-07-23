@@ -16,10 +16,10 @@ export function AlertElement({ element }: { readonly element: ElementType }) {
 
   useEffect(() => {
     registerElement(element.id, element.component_id, {
-      type: 'alert'
-      // hidden: properties.visibilityAfter
+      type: 'alert',
+      hidden: properties.startHidden
     })
-  }, [element.id, element.component_id, element.properties, registerElement])
+  }, [element.id, element.component_id, element.properties, properties.startHidden, registerElement])
 
   if (hidden) return null
 
