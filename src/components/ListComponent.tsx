@@ -23,7 +23,7 @@ export function ListComponent({ component }: { readonly component: ComponentType
   }
 
   return (
-    <Col key={component.id} xs={12} md={12} lg={component.size} className="itens">
+    <Col key={component.id} xs={12} md={12} lg={component.size} style={{ padding: '50px' }}>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {items.map(({ icon, text }, index) => (
           <li
@@ -31,7 +31,7 @@ export function ListComponent({ component }: { readonly component: ComponentType
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '8px' }}
           >
             <span>{constructorService.createElement(icon)}</span>
-            <span className="itens-text">{constructorService.createElement(text)}</span>
+            <span style={{ fontSize: '22px' }}>{constructorService.createElement(text)}</span>
           </li>
         ))}
       </ul>

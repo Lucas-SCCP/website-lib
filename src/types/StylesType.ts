@@ -1,4 +1,5 @@
 export interface StylesType {
+  backgroundColor: string
   color: string
   fontSize: string
   textAlign: string

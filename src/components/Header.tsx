@@ -7,7 +7,7 @@ export function Header({ website }: { readonly website: WebsiteType }) {
 
   return (
     <Container fluid>
-      <Row>
+      <Row id="header">
         <Col xs={12} md={12} lg={12}>
           <Container>
             <Row style={{ textAlign: 'center' }}>
@@ -28,7 +28,7 @@ export function Header({ website }: { readonly website: WebsiteType }) {
           </Container>
         </Col>
         {Array.isArray(menu) && menu.length > 0 && (
-          <Col className="cor-primaria">
+          <Col style={{ backgroundColor: '#FFCC00', borderColor: '#FFCC00', color: '#000' }}>
             <Container>
               <Navbar expand="lg">1</Navbar>
             </Container>

@@ -4,6 +4,11 @@ export type RawWebsiteType = {
   domain: string
   domain_stage: string
   logo: string
+  properties: {}
+  styles: {
+    backgroundColor: string
+    color: string
+  }
   enabled: boolean
   published_at: string | null
   created_at: string

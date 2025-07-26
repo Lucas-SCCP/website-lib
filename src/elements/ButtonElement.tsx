@@ -80,8 +80,7 @@ export function ButtonElement({ element }: { readonly element: ElementType }) {
         rel={properties.path ? 'noopener noreferrer' : undefined}
         disabled={loading}
         onClick={handleClick}
-        className="cor-primaria"
-        style={{ width: '100%', marginBottom: '10px', ...style }}
+        style={{ backgroundColor: '#FFCC00', borderColor: '#FFCC00', color: '#000', width: '100%', marginBottom: '10px', ...style }}
       >
         {loading ? (
           <>

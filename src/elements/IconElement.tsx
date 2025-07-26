@@ -24,7 +24,7 @@ export function IconElement({ element }: { readonly element: ElementType }) {
   return (
     <ElementColWrapper element={element}>
       <Suspense fallback={null}>
-        <LazyIcon size={20} className="texto-primaria" style={{ marginRight: '8px', ...style }} />
+        <LazyIcon size={20} style={{ marginRight: '8px', ...style }} />
       </Suspense>
     </ElementColWrapper>
   )

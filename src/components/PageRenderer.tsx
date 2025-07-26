@@ -15,9 +15,9 @@ export function PageRenderer({ ga4, title, components }: { readonly ga4: string;
         <meta property="og:description" content={title} />
         <meta property="og:image" content={title} />
       </Helmet>
-      <Container>
+      <Container fluid style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/images/background_ctcleanfoods.png')`, backgroundSize: 'contain', backgroundPosition: 'top', width: '100%' }}>
         <Row id="page" style={{ padding: '20px' }}>
-          <Col xs={12} sm={12} md={12} lg={{ span: 6, offset: 3 }} className="destaque border-primaria">
+          <Col xs={12} sm={12} md={12} lg={{ span: 4, offset: 4 }} style={{ padding: '50px', border: '3px solid #FFCC00', backgroundColor: '#1b1b1b', color: '#fff', textAlign: 'center' }}>
             {components.map((component) => (
               <Row id="component" key={component.id}>
                 {constructorService.createComponent(component)}

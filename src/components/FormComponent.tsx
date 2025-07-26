@@ -23,7 +23,7 @@ export function FormComponent({ component }: { readonly component: ComponentType
 
   return (
     <Form noValidate onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
-      <Row className="form-contact">
+      <Row style={{ padding: '50px' }}>
         {Object.values(component.elements.content).map((content) => {
           const element = constructorService.createElement(content)
           return React.cloneElement(element, { key: content.id })

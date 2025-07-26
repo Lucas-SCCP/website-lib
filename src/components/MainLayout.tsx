@@ -5,12 +5,10 @@ import type { WebsiteType } from '../types/WebsiteType'
 
 export function MainLayout({ website }: { readonly website: WebsiteType }) {
   return (
-    <>
+    <div id="main-layout" style={{ backgroundColor: website.styles.backgroundColor, color: website.styles.color }}>
       <Header website={website} />
-      <main className="background-image">
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
-    </>
+    </div>
   )
 }
