@@ -70,7 +70,7 @@ export type RawWebsiteType = {
               successMessageId?: number
               errorMessageId?: number
             }
-            style: {
+            styles: {
               color: string
               fontSize: string
               textAlign: string

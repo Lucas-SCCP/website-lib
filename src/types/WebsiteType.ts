@@ -1,6 +1,6 @@
 import type { PageType } from './PageType'
-import type { PropertiesType } from './PropertiesType'
 import type { StylesType } from './StylesType'
+import type { WebsitePropertiesType } from './WebsitePropertiesType'
 
 export interface WebsiteType {
   id: number
@@ -8,7 +8,7 @@ export interface WebsiteType {
   domain: string
   domain_stage: string
   logo: string
-  properties: PropertiesType
+  properties: WebsitePropertiesType
   styles: StylesType
   enabled: boolean
   published_at: string | null

@@ -8,7 +8,7 @@ export function MainLayout({ website }: { readonly website: WebsiteType }) {
     <div id="main-layout" style={{ backgroundColor: website.styles.backgroundColor, color: website.styles.color }}>
       <Header website={website} />
       <Outlet />
-      <Footer />
+      <Footer website={website} />
     </div>
   )
 }
