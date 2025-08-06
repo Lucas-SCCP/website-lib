@@ -1,6 +1,4 @@
-import { WebsitePropertiesType } from './WebsitePropertiesType'
-
-export interface FooterPropertiesType extends WebsitePropertiesType {
+export interface FooterPropertiesType {
   text1: string
   text2: string
   text3: string

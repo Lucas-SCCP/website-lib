@@ -1,6 +1,4 @@
-import type { WebsitePropertiesType } from './WebsitePropertiesType'
-
-export interface SocialPropertiesType extends WebsitePropertiesType {
+export interface SocialPropertiesType {
   instagram: {
     path: string
   },

@@ -1,5 +1,3 @@
-import { WebsitePropertiesType } from './WebsitePropertiesType'
-
-export interface HeaderPropertiesType extends WebsitePropertiesType {
+export interface HeaderPropertiesType {
   logoAlign: 'left' | 'right' | 'center'
 }
