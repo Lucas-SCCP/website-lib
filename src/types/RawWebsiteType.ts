@@ -4,7 +4,27 @@ export type RawWebsiteType = {
   domain: string
   domain_stage: string
   logo: string
-  properties: {}
+  properties: {
+    header: {
+      logoAlign: 'left' | 'right' | 'center'
+    }
+    footer: {
+      text1: string
+      text2: string
+      text3: string
+    }
+    social: {
+      facebook: {
+        path: string
+      }
+      linktree: {
+        path: string
+      }
+      instagram: {
+        path: string
+      }
+    }
+  }
   styles: {
     backgroundColor: string
     color: string
@@ -71,15 +91,18 @@ export type RawWebsiteType = {
               errorMessageId?: number
             }
             styles: {
-              color: string
-              fontSize: string
-              textAlign: string
-              fontWeight: string
-              display: string
-              height: string
-              alignItems: string
-              marginTop: string
-              marginLeft: string
+              color?: string
+              fontSize?: string
+              textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+              fontWeight?: string
+              display?: string
+              height?: string
+              alignItems?: string
+              marginTop?: string
+              marginLeft?: string
+              backgroundColor?: string
+              marginBottom?: string
+              float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
             }
           }
         ]
