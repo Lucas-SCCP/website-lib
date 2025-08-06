@@ -1,7 +1,8 @@
-import { Container, Row, Col, Navbar } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import type { WebsiteType } from '../types/WebsiteType'
 
 export function Header({ website }: { readonly website: WebsiteType }) {
+  const headerProperties = website.properties.header
   return (
     <Container fluid>
       <Row id="header">
@@ -14,7 +15,7 @@ export function Header({ website }: { readonly website: WebsiteType }) {
                   width="200"
                   className="d-inline-block align-top"
                   alt="Logo"
-                  style={{ textAlign: 'center' }}
+                  style={{ textAlign: headerProperties.logoAlign }}
                 />
               </Col>
             </Row>
