@@ -80,7 +80,7 @@ export type RawWebsiteType = {
               mask?: string
               placeholder?: string
               required?: boolean
-              validateTypeId?: number
+              inputValidateId?: number
 
               loadingTime?: number
               hideOnClick?: boolean
