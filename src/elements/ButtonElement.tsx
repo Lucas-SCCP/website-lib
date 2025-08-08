@@ -5,11 +5,12 @@ import { UseFormStore } from '../stores/UseFormStore'
 import { ButtonActionFactory } from '../factories/ButtonActionFactory'
 import type { ElementType } from '../types/ElementType'
 import type { ButtonPropertiesType } from '../types/ButtonPropertiesType'
+import type { StylesType } from '../types/StylesType'
 
 export function ButtonElement({ element }: { readonly element: ElementType }) {
   const properties: ButtonPropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
-  const style = element.styles as React.CSSProperties
+  const style = element.styles as StylesType
 
   const hidden = UseFormStore((state) => state.elements[element.id]?.hidden)
   const loading = UseFormStore((state) => state.elements[element.id]?.loading)
@@ -80,7 +81,7 @@ export function ButtonElement({ element }: { readonly element: ElementType }) {
         rel={properties.path ? 'noopener noreferrer' : undefined}
         disabled={loading}
         onClick={handleClick}
-        style={{ backgroundColor: '#FFCC00', borderColor: '#FFCC00', color: '#000', width: '100%', marginBottom: '10px', ...style }}
+        style={style}
       >
         {loading ? (
           <>

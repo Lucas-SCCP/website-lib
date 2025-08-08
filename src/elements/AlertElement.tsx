@@ -4,11 +4,12 @@ import { UseFormStore } from '../stores/UseFormStore'
 import { ElementColWrapper } from './ElementColWrapper'
 import type { ElementType } from '../types/ElementType'
 import type { PropertiesType } from '../types/PropertiesType'
+import type { StylesType } from '../types/StylesType'
 
 export function AlertElement({ element }: { readonly element: ElementType }) {
   const properties: PropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
-  const style = element.styles as React.CSSProperties
+  const style = element.styles as StylesType
 
   const hidden = UseFormStore((state) => state.elements[element.id]?.hidden)
 

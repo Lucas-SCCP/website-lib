@@ -91,18 +91,29 @@ export type RawWebsiteType = {
               errorMessageId?: number
             }
             styles: {
-              color?: string
-              fontSize?: string
-              textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
-              fontWeight?: string
-              display?: string
-              height?: string
               alignItems?: string
+              backgroundColor?: string
+              borderColor?: string
+              borderRadius?: string
+              borderStyle?: string
+              borderWidth?: string
+              color?: string
+              display?: string
+              float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+              fontSize?: string
+              fontweight?: string
+              height?: string
               marginTop?: string
               marginLeft?: string
-              backgroundColor?: string
+              marginRight?: string
               marginBottom?: string
-              float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+              objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+              paddingTop?: string
+              paddingLeft?: string
+              paddingRight?: string
+              paddingBottom?: string
+              textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+              width?: string
             }
           }
         ]

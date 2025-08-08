@@ -3,12 +3,13 @@ import { IconType } from 'react-icons'
 import { ElementColWrapper } from './ElementColWrapper'
 import type { ElementType } from '../types/ElementType'
 import type { PropertiesType } from '../types/PropertiesType'
+import type { StylesType } from '../types/StylesType'
 
 export function IconElement({ element }: { readonly element: ElementType }) {
   const properties: PropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
   const name = properties.name
-  const style = element.styles as React.CSSProperties
+  const style = element.styles as StylesType
 
   // Dynamic lazy import for react-icons/fa
   const LazyIcon = React.lazy<React.FC<{ size?: number; className?: string; style?: React.CSSProperties }>>(() =>
@@ -24,7 +25,7 @@ export function IconElement({ element }: { readonly element: ElementType }) {
   return (
     <ElementColWrapper element={element}>
       <Suspense fallback={null}>
-        <LazyIcon size={20} style={{ marginRight: '8px', ...style }} />
+        <LazyIcon size={20} style={style} />
       </Suspense>
     </ElementColWrapper>
   )
