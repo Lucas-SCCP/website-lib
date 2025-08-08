@@ -101,7 +101,7 @@ export type RawWebsiteType = {
               display?: string
               float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
               fontSize?: string
-              fontweight?: string
+              fontWeight?: string
               height?: string
               marginTop?: string
               marginLeft?: string

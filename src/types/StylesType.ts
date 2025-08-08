@@ -1,6 +1,7 @@
 export type Float = 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
 export type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
 export type ObjectFit = 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+export type FontWeight = 'normal' | 'bold' | 'bolder' | 'lighter' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
 
 export interface StylesType {
   alignItems?: string
@@ -13,7 +14,7 @@ export interface StylesType {
   display?: string
   float?: Float
   fontSize?: string
-  fontWeight?: string
+  fontWeight?: FontWeight
   height?: string
   marginTop?: string
   marginLeft?: string
