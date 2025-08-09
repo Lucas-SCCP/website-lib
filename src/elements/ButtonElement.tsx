@@ -20,19 +20,19 @@ export function ButtonElement({ element }: { readonly element: ElementType }) {
   const registerElement = UseFormStore((state) => state.registerElement)
 
   useEffect(() => {
-    registerElement(element.id, element.component_id, {
+    registerElement(element.id, element.componentId, {
       type: 'button',
       hidden: properties.startHidden
     })
-  }, [element.id, element.component_id, element.properties, properties.startHidden, registerElement])
+  }, [element.id, element.componentId, element.properties, properties.startHidden, registerElement])
 
   async function handleClick(event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) {
     if (!properties.path) {
       event.preventDefault()
 
-      UseFormStore.getState().validateAllFields(element.component_id)
+      UseFormStore.getState().validateAllFields(element.componentId)
 
-      const formData = UseFormStore.getState().getElementsByForm(element.component_id)
+      const formData = UseFormStore.getState().getElementsByForm(element.componentId)
       const hasErrors = formData.some((e) => e.error)
 
       if (hasErrors) {

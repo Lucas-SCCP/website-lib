@@ -11,9 +11,9 @@ export function ListComponent({ component }: { readonly component: ComponentType
   const items = []
   for (let i = 0; i < contents.length; i++) {
     const current = contents[i]
-    if (current.element_type_id === ElementEnum.Icon) {
+    if (current.elementTypeId === ElementEnum.Icon) {
       const next = contents[i + 1]
-      if (next && next.element_type_id === ElementEnum.Text) {
+      if (next && next.elementTypeId === ElementEnum.Text) {
         items.push({ icon: current, text: next })
         i++
       } else {
@@ -23,7 +23,14 @@ export function ListComponent({ component }: { readonly component: ComponentType
   }
 
   return (
-    <Col key={component.id} xs={12} md={12} lg={component.size} style={{ padding: '50px' }}>
+    <Col
+      key={component.id}
+      xs={{ span: component.properties.size.xs.span, offset: component.properties.size.xs.offset }}
+      sm={{ span: component.properties.size.sm.span, offset: component.properties.size.sm.offset }}
+      md={{ span: component.properties.size.md.span, offset: component.properties.size.md.offset }}
+      lg={{ span: component.properties.size.lg.span, offset: component.properties.size.lg.offset }}
+      style={component.style}
+    >
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {items.map(({ icon, text }, index) => (
           <li

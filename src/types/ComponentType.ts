@@ -1,17 +1,19 @@
 import type { ElementType } from './ElementType'
+import type { PropertiesType } from './PropertiesType'
+import type { StylesType } from './StylesType'
 
 export interface ComponentType {
   id: number
-  page_id: number
-  component_type_id: number
-  properties: JSON
+  pageId: number
+  componentTypeId: number
   name: string
-  size: number
+  properties: PropertiesType
+  style: StylesType
   sort: number
   enabled: boolean
-  created_at: string
-  updated_at: string
-  deleted_at: string | null
+  createdAt: string
+  updatedAt: string
+  deletedAt: string | null
   elements: {
     line: number
     content: ElementType[]

@@ -2,24 +2,46 @@ import { Suspense } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import { ConstructorService } from '../services/ConstructorService'
+import type { WebsiteType } from '../types/WebsiteType'
+import type { PageType } from '../types/PageType'
 import type { ComponentType } from '../types/ComponentType'
+import type { PropertiesType } from '../types/PropertiesType'
+import type { StylesType } from '../types/StylesType'
 
-export function PageRenderer({ ga4, title, components }: { readonly ga4: string; readonly title: string; readonly components: ComponentType[] }) {
+export function PageRenderer({ website, page }: { readonly website: WebsiteType; readonly page: PageType}) {
   const constructorService = new ConstructorService()
+  const websiteStyles = website.styles as StylesType
+  const pageProperties = page.properties as PropertiesType
+  const components: ComponentType[] = page.components
   return (
-    <Suspense fallback={<div>Carregando elementos...</div>}>
+    <Suspense fallback={<div>{website.properties.loadingMessage}</div>}>
       <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={title} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={title} />
-        <meta property="og:image" content={title} />
+        <title>{page.title}</title>
+        <meta name="description" content={page.title} />
+        <meta property="og:title" content={page.title} />
+        <meta property="og:description" content={page.title} />
+        <meta property="og:image" content={page.title} />
       </Helmet>
-      <Container fluid style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/images/background_ctcleanfoods.png')`, backgroundSize: 'contain', backgroundPosition: 'top', width: '100%' }}>
-        <Row id="page" style={{ padding: '20px' }}>
-          <Col xs={12} sm={12} md={12} lg={{ span: 4, offset: 4 }} style={{ padding: '50px', border: '3px solid #FFCC00', backgroundColor: '#1b1b1b', color: '#fff', textAlign: 'center' }}>
+      <Container
+        fluid
+        style={{
+          backgroundImage: websiteStyles.backgroundImage,
+          backgroundSize: websiteStyles.backgroundSize,
+          backgroundPosition: websiteStyles.backgroundPosition,
+          width: websiteStyles.width
+        }}
+      >
+        <Row id="pageRow">
+          <Col
+            id="pageCol"
+            xs={{ span: pageProperties.size.xs.span, offset: pageProperties.size.xs.offset }}
+            sm={{ span: pageProperties.size.sm.span, offset: pageProperties.size.sm.offset }}
+            md={{ span: pageProperties.size.md.span, offset: pageProperties.size.md.offset }}
+            lg={{ span: pageProperties.size.lg.span, offset: pageProperties.size.lg.offset }}
+            style={page.styles}
+          >
             {components.map((component) => (
-              <Row id="component" key={component.id}>
+              <Row id="componentRow" key={component.id}>
                 {constructorService.createComponent(component)}
               </Row>
             ))}

@@ -8,8 +8,15 @@ export function TextComponent({ component }: { readonly component: ComponentType
   const constructorService = new ConstructorService()
 
   return (
-    <Col key={component.id} xs={12} md={12} lg={component.size}>
-      <Row id="element">
+    <Col
+      id="componentCol"
+      key={component.id}
+      xs={{ span: component.properties.size.xs.span, offset: component.properties.size.xs.offset }}
+      sm={{ span: component.properties.size.sm.span, offset: component.properties.size.sm.offset }}
+      md={{ span: component.properties.size.md.span, offset: component.properties.size.md.offset }}
+      lg={{ span: component.properties.size.lg.span, offset: component.properties.size.lg.offset }}
+    >
+      <Row id="elementRow">
         {Object.values(component.elements.content).map((element: ElementType) => {
           const e = constructorService.createElement(element)
           return React.cloneElement(e, { key: element.id })

@@ -16,11 +16,11 @@ export function AlertElement({ element }: { readonly element: ElementType }) {
   const registerElement = UseFormStore((state) => state.registerElement)
 
   useEffect(() => {
-    registerElement(element.id, element.component_id, {
+    registerElement(element.id, element.componentId, {
       type: 'alert',
       hidden: properties.startHidden
     })
-  }, [element.id, element.component_id, element.properties, properties.startHidden, registerElement])
+  }, [element.id, element.componentId, element.properties, properties.startHidden, registerElement])
 
   if (hidden) return null
 

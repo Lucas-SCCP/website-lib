@@ -6,14 +6,14 @@ export interface WebsiteType {
   id: number
   name: string
   domain: string
-  domain_stage: string
+  domainStage: string
   logo: string
   properties: WebsitePropertiesType
   styles: StylesType
   enabled: boolean
-  published_at: string | null
-  created_at: string
-  updated_at: string
-  deleted_at: string | null
+  publishedAt: string | null
+  createdAt: string
+  updatedAt: string
+  deletedAt: string | null
   pages: PageType[]
 }

@@ -20,12 +20,12 @@ export function InputElement({ element }: { readonly element: ElementType }) {
   const validateFormData = UseFormStore((state) => state.validateFormData)
 
   useEffect(() => {
-    registerElement(element.id, element.component_id, {
+    registerElement(element.id, element.componentId, {
       name: properties.name,
       type: 'input',
       inputValidateId: properties.inputValidateId
     })
-  }, [element.id, element.component_id, properties.name, properties.inputValidateId, registerElement])
+  }, [element.id, element.componentId, properties.name, properties.inputValidateId, registerElement])
 
   if (hidden) return null
 

@@ -12,7 +12,7 @@ import type { ElementType } from '../types/ElementType'
 
 export class ElementFactory {
   build(element: ElementType): React.ReactElement | null {
-    switch (element.element_type_id) {
+    switch (element.elementTypeId) {
       case ElementEnum.Text:
         return <TextElement element={element} />
       case ElementEnum.Image:
@@ -30,7 +30,7 @@ export class ElementFactory {
       case ElementEnum.Link:
         return <LinkElement element={element} />
       default:
-        throw new Error('Invalid element type: ' + element.element_type_id)
+        throw new Error('Invalid element type: ' + element.elementTypeId)
     }
   }
 }

@@ -8,7 +8,7 @@ import type { ComponentType } from '../types/ComponentType'
 
 export class ComponentFactory {
   build(component: ComponentType): React.ReactElement | null {
-    switch (component.component_type_id) {
+    switch (component.componentTypeId) {
       case ComponentEnum.Text:
         return <TextComponent component={component} />
       case ComponentEnum.List:
@@ -18,7 +18,7 @@ export class ComponentFactory {
       case ComponentEnum.Form:
         return <FormComponent component={component} />
       default:
-        throw new Error('Invalid component type: ' + component.component_type_id)
+        throw new Error('Invalid component type: ' + component.componentTypeId)
     }
   }
 }

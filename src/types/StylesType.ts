@@ -6,6 +6,9 @@ export type FontWeight = 'normal' | 'bold' | 'bolder' | 'lighter' | '100' | '200
 export interface StylesType {
   alignItems?: string
   backgroundColor?: string
+  backgroundImage?: string
+  backgroundSize?: string
+  backgroundPosition?: string
   borderColor?: string
   borderRadius?: string
   borderStyle?: string

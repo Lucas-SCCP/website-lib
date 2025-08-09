@@ -2,9 +2,10 @@ export type RawWebsiteType = {
   id: number
   name: string
   domain: string
-  domain_stage: string
+  domainStage: string
   logo: string
   properties: {
+    loadingMessage: string
     header: {
       logoAlign: 'left' | 'right' | 'center'
     }
@@ -28,52 +29,110 @@ export type RawWebsiteType = {
   styles: {
     backgroundColor: string
     color: string
+    backgroundImage: string
   }
   enabled: boolean
-  published_at: string | null
-  created_at: string
-  updated_at: string
-  deleted_at: string | null
+  publishedAt: string | null
+  createdAt: string
+  updatedAt: string
+  deletedAt: string | null
   pages: Array<{
     id: number
-    website_id: number
+    websiteId: number
     title: string
     name: string
     path: string
     menu: number
-    menu_order: number
+    menuOrder: number
     enabled: boolean
+    properties: {
+      size: {
+        xs: {
+          span: number
+          offset?: number
+        }
+        sm: {
+          span: number
+          offset?: number
+        }
+        md: {
+          span: number
+          offset?: number
+        }
+        lg: {
+          span: number
+          offset?: number
+        }
+      }
+    }
+    styles: {
+      backgroundColor: string
+      color: string
+      backgroundImage: string
+    }
     components: Array<{
       id: number
-      page_id: number
-      component_type_id: number
-      properties: JSON
+      pageId: number
+      componentTypeId: number
       name: string
-      size: number
+      properties: {
+        size: {
+          xs: {
+            span: number
+            offset?: number
+          }
+          sm: {
+            span: number
+            offset?: number
+          }
+          md: {
+            span: number
+            offset?: number
+          }
+          lg: {
+            span: number
+            offset?: number
+          }
+        }
+      }
       sort: number
       enabled: boolean
-      created_at: string
-      updated_at: string
-      deleted_at: string | null
+      createdAt: string
+      updatedAt: string
+      deletedAt: string | null
       elements: {
         line: number
         content: [
           {
             id: number
-            component_id: number
-            element_type_id: number
-            size: number
-            component_parent: number | null
+            componentId: number
+            elementTypeId: number
+            componentParent: number | null
             sort: number
-            created_at: string
-            updated_at: string
-            deleted_at: string | null
             properties: {
               name: string
               title: string
               message: string
               type: string
               startHidden: boolean
+              size: {
+                xs: {
+                  span: number
+                  offset?: number
+                }
+                sm: {
+                  span: number
+                  offset?: number
+                }
+                md: {
+                  span: number
+                  offset?: number
+                }
+                lg: {
+                  span: number
+                  offset?: number
+                }
+              }
 
               path?: string
 
@@ -115,6 +174,9 @@ export type RawWebsiteType = {
               textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
               width?: string
             }
+            createdAt: string
+            updatedAt: string
+            deletedAt: string | null
           }
         ]
       }
