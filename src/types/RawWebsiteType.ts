@@ -4,16 +4,72 @@ export type RawWebsiteType = {
   domain: string
   domainStage: string
   logo: string
-  properties: {
-    loadingMessage: string
-    header: {
+  header: {
+    properties: {
       logoAlign: 'left' | 'right' | 'center'
     }
-    footer: {
+    styles: {
+      alignItems?: string
+      backgroundColor?: string
+      borderColor?: string
+      borderRadius?: string
+      borderStyle?: string
+      borderWidth?: string
+      color?: string
+      display?: string
+      float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+      fluid?: boolean
+      fontSize?: string
+      fontWeight?: string
+      height?: string
+      marginTop?: string
+      marginLeft?: string
+      marginRight?: string
+      marginBottom?: string
+      objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+      paddingTop?: string
+      paddingLeft?: string
+      paddingRight?: string
+      paddingBottom?: string
+      textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+      width?: string
+    }
+  }
+  footer: {
+    properties: {
       text1: string
       text2: string
       text3: string
     }
+    styles: {
+      alignItems?: string
+      backgroundColor?: string
+      borderColor?: string
+      borderRadius?: string
+      borderStyle?: string
+      borderWidth?: string
+      color?: string
+      display?: string
+      float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+      fluid?: boolean
+      fontSize?: string
+      fontWeight?: string
+      height?: string
+      marginTop?: string
+      marginLeft?: string
+      marginRight?: string
+      marginBottom?: string
+      objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+      paddingTop?: string
+      paddingLeft?: string
+      paddingRight?: string
+      paddingBottom?: string
+      textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+      width?: string
+    }
+  }
+  properties: {
+    loadingMessage: string
     social: {
       facebook: {
         path: string
@@ -27,9 +83,34 @@ export type RawWebsiteType = {
     }
   }
   styles: {
-    backgroundColor: string
-    color: string
-    backgroundImage: string
+    alignItems?: string
+    backgroundColor?: string
+    backgroundImage?: string
+    backgroundGradientColorStart?: string
+    backgroundGradientColorEnd?: string
+    backgroundPosition?: string
+    backgroundSize?: string
+    borderColor?: string
+    borderRadius?: string
+    borderStyle?: string
+    borderWidth?: string
+    color?: string
+    display?: string
+    float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+    fontSize?: string
+    fontWeight?: string
+    height?: string
+    marginTop?: string
+    marginLeft?: string
+    marginRight?: string
+    marginBottom?: string
+    objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+    paddingTop?: string
+    paddingLeft?: string
+    paddingRight?: string
+    paddingBottom?: string
+    textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+    width?: string
   }
   enabled: boolean
   publishedAt: string | null
@@ -66,10 +147,34 @@ export type RawWebsiteType = {
       }
     }
     styles: {
-      backgroundColor: string
-      color: string
-      backgroundImage: string
+      alignItems?: string
+      backgroundColor?: string
+      borderColor?: string
+      borderRadius?: string
+      borderStyle?: string
+      borderWidth?: string
+      color?: string
+      display?: string
+      float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+      fluid?: boolean
+      fontSize?: string
+      fontWeight?: string
+      height?: string
+      marginTop?: string
+      marginLeft?: string
+      marginRight?: string
+      marginBottom?: string
+      objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+      paddingTop?: string
+      paddingLeft?: string
+      paddingRight?: string
+      paddingBottom?: string
+      textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+      width?: string
     }
+    createdAt: string
+    updatedAt: string
+    deletedAt: string | null
     components: Array<{
       id: number
       pageId: number
@@ -94,6 +199,31 @@ export type RawWebsiteType = {
             offset?: number
           }
         }
+      }
+      styles: {
+        alignItems?: string
+        backgroundColor?: string
+        borderColor?: string
+        borderRadius?: string
+        borderStyle?: string
+        borderWidth?: string
+        color?: string
+        display?: string
+        float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+        fontSize?: string
+        fontWeight?: string
+        height?: string
+        marginTop?: string
+        marginLeft?: string
+        marginRight?: string
+        marginBottom?: string
+        objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+        paddingTop?: string
+        paddingLeft?: string
+        paddingRight?: string
+        paddingBottom?: string
+        textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+        width?: string
       }
       sort: number
       enabled: boolean

@@ -6,6 +6,8 @@ export type FontWeight = 'normal' | 'bold' | 'bolder' | 'lighter' | '100' | '200
 export interface StylesType {
   alignItems?: string
   backgroundColor?: string
+  backgroundGradientColorStart?: string
+  backgroundGradientColorEnd?: string
   backgroundImage?: string
   backgroundSize?: string
   backgroundPosition?: string
@@ -16,6 +18,7 @@ export interface StylesType {
   color?: string
   display?: string
   float?: Float
+  fluid?: boolean
   fontSize?: string
   fontWeight?: FontWeight
   height?: string

@@ -29,7 +29,7 @@ export function ListComponent({ component }: { readonly component: ComponentType
       sm={{ span: component.properties.size.sm.span, offset: component.properties.size.sm.offset }}
       md={{ span: component.properties.size.md.span, offset: component.properties.size.md.offset }}
       lg={{ span: component.properties.size.lg.span, offset: component.properties.size.lg.offset }}
-      style={component.style}
+      style={component.styles}
     >
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {items.map(({ icon, text }, index) => (

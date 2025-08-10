@@ -8,7 +8,7 @@ export interface ComponentType {
   componentTypeId: number
   name: string
   properties: PropertiesType
-  style: StylesType
+  styles: StylesType
   sort: number
   enabled: boolean
   createdAt: string

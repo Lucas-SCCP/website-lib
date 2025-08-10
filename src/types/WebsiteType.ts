@@ -1,5 +1,7 @@
 import type { PageType } from './PageType'
 import type { StylesType } from './StylesType'
+import type { HeaderType } from './HeaderType'
+import type { FooterType } from './FooterType'
 import type { WebsitePropertiesType } from './WebsitePropertiesType'
 
 export interface WebsiteType {
@@ -8,6 +10,8 @@ export interface WebsiteType {
   domain: string
   domainStage: string
   logo: string
+  header: HeaderType
+  footer: FooterType
   properties: WebsitePropertiesType
   styles: StylesType
   enabled: boolean

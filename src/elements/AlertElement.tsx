@@ -26,7 +26,7 @@ export function AlertElement({ element }: { readonly element: ElementType }) {
 
   return (
     <ElementColWrapper element={element}>
-      <Alert hidden={hidden} variant={properties.type} className="text-center" style={style}>
+      <Alert hidden={hidden} variant={properties.type} style={style}>
         <Alert.Heading>{properties.title}</Alert.Heading>
         <p className="mb-0">{properties.message}</p>
       </Alert>

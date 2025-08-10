@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Form } from 'react-bootstrap'
 import InputMask from 'react-input-mask'
 import { ElementColWrapper } from './ElementColWrapper'
