@@ -7,6 +7,8 @@ export type RawWebsiteType = {
   header: {
     properties: {
       logoAlign: 'left' | 'right' | 'center'
+      showLogo: boolean
+      showMenu: boolean
     }
     styles: {
       alignItems?: string

@@ -1,6 +1,6 @@
 {
   "name": "website-lib",
-  "version": "1.0.45",
+  "version": "1.0.48",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",

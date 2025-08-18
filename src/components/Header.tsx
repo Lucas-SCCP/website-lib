@@ -8,7 +8,7 @@ export function Header({ website }: { readonly website: WebsiteType }) {
   return (
     <Container fluid={headerStyles.fluid || undefined} style={{ backgroundColor: headerStyles.backgroundColor }}>
       <Row id="header">
-        <Col xs={12} md={12} lg={12} style={headerStyles}>
+        <Col xs={12} md={12} lg={12} style={{ display: headerProperties.showLogo ? 'block' : 'none', ...headerStyles }}>
           <img
             src={`https://noisdev-website-images.s3.sa-east-1.amazonaws.com/${domain}/${website.logo}`}
             width="200"
