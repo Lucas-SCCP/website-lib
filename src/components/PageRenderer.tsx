@@ -42,11 +42,11 @@ export function PageRenderer({ website, page, editionMode }: { readonly website:
               lg={{ span: pageProperties.size.lg.span, offset: pageProperties.size.lg.offset }}
               style={page.styles}
             >
-              {components.map((component) => (
-                <Row id="componentRow" key={component.id}>
-                  {constructorService.createComponent(component)}
-                </Row>
-              ))}
+              <Row id="componentRow">
+                {components.map((component) => (
+                  constructorService.createComponent(component)
+                ))}
+              </Row>
             </Col>
           </Row>
         </Container>
