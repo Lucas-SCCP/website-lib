@@ -4,4 +4,7 @@ export interface UserType {
   password: string
   default_website_id: number
   token: string
+  access_level: {
+    id: number
+  }
 }
