@@ -2,9 +2,9 @@ export interface UserType {
   id: number
   email: string
   password: string
-  default_website_id: number
+  defaultWebsiteId: number
   token: string
-  access_level: {
+  accessLevel: {
     id: number
   }
 }
