@@ -119,6 +119,7 @@ export type RawWebsiteType = {
   createdAt: string
   updatedAt: string
   deletedAt: string | null
+  planId: number
   pages: Array<{
     id: number
     websiteId: number

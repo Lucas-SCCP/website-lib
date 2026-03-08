@@ -19,5 +19,6 @@ export interface WebsiteType {
   createdAt: string
   updatedAt: string
   deletedAt: string | null
+  planId: number
   pages: PageType[]
 }

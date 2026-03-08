@@ -5,11 +5,10 @@ import { ConstructorService } from '../services/ConstructorService'
 import type { WebsiteType } from '../types/WebsiteType'
 import type { PageType } from '../types/PageType'
 import type { ComponentType } from '../types/ComponentType'
-import type { PropertiesType } from '../types/PropertiesType'
 
 export function PageRenderer({ website, page, editionMode }: { readonly website: WebsiteType; readonly page: PageType; readonly editionMode: boolean }) {
   const constructorService = new ConstructorService()
-  const pageProperties = page.properties as PropertiesType
+  const pageProperties = page.properties
   const components: ComponentType[] = page.components
   const websiteStyles = website.styles
   return (
