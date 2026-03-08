@@ -87,7 +87,7 @@ npm run build:watch
 ```
 
 - `npm link` registra a lib globalmente na sua máquina.
-- `npm run link:consumer-peers` força a lib linkada a usar a **mesma cópia de React/ReactDOM** do projeto consumidor (evita erro de `Invalid hook call`).
+- `npm run link:consumer-peers` força a lib linkada a usar as **mesmas cópias das peer dependencies** do projeto consumidor (ex.: `react`, `react-dom`, `react-router-dom`), evitando conflitos de contexto e `Invalid hook call`.
 - `npm run build:watch` recompila automaticamente sempre que você alterar algo em `src/`.
 
 ### 2) No projeto consumidor
@@ -99,7 +99,7 @@ npm run dev
 
 Quando você salvar mudanças na lib, o `dist/` será atualizado e o projeto consumidor refletirá as alterações.
 
-> Se aparecer `Invalid hook call`, normalmente existem duas cópias de React carregadas. O comando `npm run link:consumer-peers -- /caminho/para/site-template` na lib corrige esse cenário de desenvolvimento local com `npm link`.
+> Se o `MainLayout` renderiza mas o `PageRenderer` não entra no `<Outlet />`, também pode ser duplicidade de `react-router-dom` no `npm link`. O comando `npm run link:consumer-peers -- /caminho/para/site-template` corrige isso ao alinhar peers da lib com o consumidor.
 
 ### 3) (Opcional) Limpeza do link
 
@@ -127,7 +127,7 @@ npm install
 - `npm run format` — Formata o código com Prettier.
 - `npm run link:global` — Atalho para `npm link`.
 - `npm run unlink:global` — Remove o link global local da lib.
-- `npm run link:consumer-peers -- /caminho/consumidor` — Linka `react` e `react-dom` do consumidor dentro da lib para evitar múltiplas instâncias do React.
+- `npm run link:consumer-peers -- /caminho/consumidor` — Linka as `peerDependencies` do consumidor na lib (incluindo `react`, `react-dom` e `react-router-dom`).
 
 ---
 

@@ -45,7 +45,10 @@
     "typescript-eslint": "^8.34.1",
     "prettier": "^3.6.2",
     "tsc-esm-fix": "^3.1.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
   },
   "peerDependencies": {
     "bootstrap": "^5.0.0",
