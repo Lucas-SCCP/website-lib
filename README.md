@@ -74,15 +74,42 @@ index.ts         # Exporta tudo que é público na lib
 
 ## 🧪 Teste Local
 
-Para testar localmente em outro projeto:
+Para desenvolver a biblioteca e ver as alterações automaticamente no projeto consumidor, use o fluxo abaixo.
+
+### 1) Na biblioteca (`website-lib`)
 
 ```bash
-sudo rm -rf node_modules
+npm install
+npm run build
 npm link
+npm run build:watch
 ```
-No projeto consumidor:
+
+- `npm link` registra a lib globalmente na sua máquina.
+- `npm run build:watch` recompila automaticamente sempre que você alterar algo em `src/`.
+
+### 2) No projeto consumidor
+
 ```bash
 npm link website-lib
+npm run dev
+```
+
+Quando você salvar mudanças na lib, o `dist/` será atualizado e o projeto consumidor refletirá as alterações.
+
+### 3) (Opcional) Limpeza do link
+
+Na lib:
+
+```bash
+npm run unlink:global
+```
+
+No consumidor:
+
+```bash
+npm unlink website-lib
+npm install
 ```
 
 ---
@@ -90,9 +117,12 @@ npm link website-lib
 ## 🏷️ Scripts
 
 - `npm run build` — Compila a biblioteca para produção.
+- `npm run build:watch` — Compila em modo watch e aplica o ajuste ESM automaticamente em `dist`.
 - `npm run lint` — Lint nos arquivos.
 - `npm run lint:fix` — Corrige problemas de lint automaticamente.
 - `npm run format` — Formata o código com Prettier.
+- `npm run link:global` — Atalho para `npm link`.
+- `npm run unlink:global` — Remove o link global local da lib.
 
 ---
 
