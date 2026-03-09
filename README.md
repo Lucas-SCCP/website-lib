@@ -82,25 +82,28 @@ Para desenvolver a biblioteca e ver as alterações automaticamente no projeto c
 npm install
 npm run build
 npm link
-npm run link:consumer-peers -- /caminho/para/site-template
+npm run link:consumer-peers -- /caminho/para/site
 npm run build:watch
 ```
 
 - `npm link` registra a lib globalmente na sua máquina.
 - `npm run link:consumer-peers` força a lib linkada a usar as **mesmas cópias das peer dependencies** do projeto consumidor (ex.: `react`, `react-dom`, `react-router-dom`), evitando conflitos de contexto e `Invalid hook call`.
 - `npm run build:watch` recompila automaticamente sempre que você alterar algo em `src/`.
-- Antes de rodar o link, garanta que o consumidor já executou `npm install`/`yarn`/`pnpm install`.
+- Antes de rodar o link, garanta que o consumidor já executou `npm install`.
 
 ### 2) No projeto consumidor
 
+Rodar apenas o install, fazer todo o processo na lib e depois rodar o link e npm start
+
 ```bash
+npm install
 npm link website-lib
-npm run dev
+npm start
 ```
 
 Quando você salvar mudanças na lib, o `dist/` será atualizado e o projeto consumidor refletirá as alterações.
 
-> Se o `MainLayout` renderiza mas o `PageRenderer` não entra no `<Outlet />`, também pode ser duplicidade de `react-router-dom` no `npm link`. O comando `npm run link:consumer-peers -- /caminho/para/site-template` corrige isso ao alinhar peers da lib com o consumidor.
+> Se o `MainLayout` renderiza mas o `PageRenderer` não entra no `<Outlet />`, também pode ser duplicidade de `react-router-dom` no `npm link`. O comando `npm run link:consumer-peers -- /caminho/para/site` corrige isso ao alinhar peers da lib com o consumidor.
 
 > Se o comando retornar `Nenhuma peer dependency encontrada no consumidor para linkar`, normalmente o caminho do projeto consumidor está incorreto ou as dependências ainda não foram instaladas nesse projeto.
 
