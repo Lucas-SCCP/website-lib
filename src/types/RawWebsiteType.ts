@@ -8,7 +8,6 @@ export type RawWebsiteType = {
     properties: {
       logoAlign: 'left' | 'right' | 'center'
       showLogo: boolean
-      showMenu: boolean
     }
     styles: {
       alignItems?: string
@@ -128,6 +127,38 @@ export type RawWebsiteType = {
     path: string
     menu: number
     menuOrder: number
+    menuType: 'link' | 'dropdown' | 'sections'
+    menuSections?: Array<{
+      section: string
+      name: string
+      order: number
+      styles: {
+        alignItems?: string
+        backgroundColor?: string
+        borderColor?: string
+        borderRadius?: string
+        borderStyle?: string
+        borderWidth?: string
+        color?: string
+        display?: string
+        float?: 'left' | 'right' | 'none' | 'inline-start' | 'inline-end'
+        fluid?: boolean
+        fontSize?: string
+        fontWeight?: string
+        height?: string
+        marginTop?: string
+        marginLeft?: string
+        marginRight?: string
+        marginBottom?: string
+        objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down'
+        paddingTop?: string
+        paddingLeft?: string
+        paddingRight?: string
+        paddingBottom?: string
+        textAlign?: 'left' | 'right' | 'center' | 'justify' | 'start' | 'end'
+        width?: string
+      }
+    }>
     enabled: boolean
     properties: {
       size: {

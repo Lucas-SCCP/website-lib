@@ -5,8 +5,10 @@ import { ConstructorService } from '../services/ConstructorService'
 import type { WebsiteType } from '../types/WebsiteType'
 import type { PageType } from '../types/PageType'
 import type { ComponentType } from '../types/ComponentType'
+import { Menu } from './Menu'
 
 export function PageRenderer({ website, page, editionMode }: { readonly website: WebsiteType; readonly page: PageType; readonly editionMode: boolean }) {
+  console.log('Rendering page')
   const constructorService = new ConstructorService()
   const pageProperties = page.properties
   const components: ComponentType[] = page.components
@@ -22,6 +24,7 @@ export function PageRenderer({ website, page, editionMode }: { readonly website:
           <meta property="og:image" content={page.title} />
         </Helmet>
       )}
+      <Menu page={page} />
       <div
         style={{
           backgroundImage: `linear-gradient(${website.styles.backgroundGradientColorStart}, ${website.styles.backgroundGradientColorEnd}), url(${website.styles.backgroundImage})`,

@@ -10,6 +10,13 @@ export interface PageType {
   path: string
   menu: number
   menuOrder: number
+  menuType: 'link' | 'dropdown' | 'sections'
+  menuSections?: Array<{
+    section: string
+    name: string
+    order: number
+    styles: StylesType
+  }>
   enabled: boolean
   properties: PropertiesType
   styles: StylesType
