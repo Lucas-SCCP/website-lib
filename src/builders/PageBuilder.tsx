@@ -1,18 +1,18 @@
 import { Suspense } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
-import { ConstructorService } from '../services/ConstructorService'
+import { Menu } from '../layouts/Menu'
+import { ComponentFactory } from '../factories/ComponentFactory'
 import type { WebsiteType } from '../types/WebsiteType'
 import type { PageType } from '../types/PageType'
 import type { ComponentType } from '../types/ComponentType'
-import { Menu } from './Menu'
 
-export function PageRenderer({ website, page, editionMode }: { readonly website: WebsiteType; readonly page: PageType; readonly editionMode: boolean }) {
-  console.log('Rendering page')
-  const constructorService = new ConstructorService()
+export function PageBuilder({ website, page, editionMode }: { readonly website: WebsiteType; readonly page: PageType; readonly editionMode: boolean }) {
+  const componentFactory = new ComponentFactory()
   const pageProperties = page.properties
   const components: ComponentType[] = page.components
   const websiteStyles = website.styles
+
   return (
     <Suspense fallback={<div>{website.properties.loadingMessage}</div>}>
       {!editionMode && (
@@ -35,18 +35,18 @@ export function PageRenderer({ website, page, editionMode }: { readonly website:
         }}
       >
         <Container fluid={page.styles.fluid || undefined}  style={websiteStyles}>
-          <Row id="pageRow">
+          <Row id="page-row">
             <Col
-              id="pageCol"
+              id="page-col"
               xs={{ span: pageProperties.size.xs.span, offset: pageProperties.size.xs.offset }}
               sm={{ span: pageProperties.size.sm.span, offset: pageProperties.size.sm.offset }}
               md={{ span: pageProperties.size.md.span, offset: pageProperties.size.md.offset }}
               lg={{ span: pageProperties.size.lg.span, offset: pageProperties.size.lg.offset }}
               style={page.styles}
             >
-              <Row id="componentRow">
+              <Row id="component-row">
                 {components.map((component) => (
-                  constructorService.createComponent(component)
+                  componentFactory.build(component)
                 ))}
               </Row>
             </Col>

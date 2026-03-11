@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Form, Row } from 'react-bootstrap'
 import { UseFormStore } from '../stores/UseFormStore'
-import { ConstructorService } from '../services/ConstructorService'
+import { ElementFactory } from '../factories/ElementFactory'
 import type { ComponentType } from '../types/ComponentType'
 
 export function FormComponent({ component }: { readonly component: ComponentType }) {
-  const constructorService = new ConstructorService()
+  const elementFactory = new ElementFactory()
   const registerForm = UseFormStore((state) => state.registerForm)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export function FormComponent({ component }: { readonly component: ComponentType
     <Form noValidate onSubmit={handleSubmit} style={{ textAlign: 'left' }}>
       <Row style={{ padding: '50px' }}>
         {Object.values(component.elements.content).map((content) => {
-          const element = constructorService.createElement(content)
+          const element = elementFactory.build(content)
           return React.cloneElement(element, { key: content.id })
         })}
       </Row>

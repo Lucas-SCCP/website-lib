@@ -1,6 +1,6 @@
 import DOMPurify from 'dompurify'
 import { Container, Row, Col } from 'react-bootstrap'
-import { SocialIcons } from './SocialIcons'
+import { SocialIconsComponent } from '../components/SocialIconsComponent'
 import { WebsiteType } from '../types/WebsiteType'
 import type { SocialPropertiesType } from '../types/SocialPropertiesType'
 import type { FooterPropertiesType } from '../types/FooterPropertiesType'
@@ -21,7 +21,7 @@ export function Footer({ website }: { readonly website: WebsiteType }) {
           className="d-flex justify-content-center"
           style={{ marginBottom: '30px' }}
         >
-          <SocialIcons social={social} />
+          <SocialIconsComponent social={social} />
         </Col>
 
         <Col

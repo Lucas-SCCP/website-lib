@@ -20,11 +20,11 @@ export function nameValidation(name: string): ValidationResult {
 export function birthDateValidation(birthDate: string): ValidationResult {
   if (!birthDate || birthDate.length === 0) {
     return { success: false, message: 'Campo obrigatório' }
-  } else if (!dateValidate(birthDate)) {
-    return { success: false, message: 'Data inválida' }
-  } else {
-    return { success: true }
   }
+  if (!dateValidate(birthDate)) {
+    return { success: false, message: 'Data inválida' }
+  }
+  return { success: true }
 }
 
 export function dateValidate(data: string): boolean {
@@ -32,17 +32,17 @@ export function dateValidate(data: string): boolean {
   if (!dia || !mes || !ano) return false
   const d = new Date(`${ano}-${mes}-${dia}`)
   const hoje = new Date()
-  return /^\d{2}\/\d{2}\/\d{4}$/.test(data) && !isNaN(d.getTime()) && d <= hoje
+  return /^\d{2}\/\d{2}\/\d{4}$/.test(data) && !Number.isNaN(d.getTime()) && d <= hoje
 }
 
 export function emailValidation(email: string): ValidationResult {
   if (!email || email.length === 0) {
     return { success: false, message: 'Campo obrigatório' }
-  } else if (!emailValidate(email)) {
-    return { success: false, message: 'Email inválido' }
-  } else {
+  }
+  if (emailValidate(email)) {
     return { success: true }
   }
+  return { success: false, message: 'Email inválido' }
 }
 
 export function emailValidate(email: string): boolean {
@@ -50,41 +50,41 @@ export function emailValidate(email: string): boolean {
 }
 
 export function cpfValidation(cpf: string): ValidationResult {
-  const onlyDigits = cpf?.replace(/\D/g, '')
+  const onlyDigits = cpf?.replaceAll(/\D/g, '')
   if (!cpf || onlyDigits.length === 0) {
     return { success: false, message: 'Campo obrigatório' }
-  } else if (!cpfValidate(onlyDigits)) {
-    return { success: false, message: 'CPF inválido' }
-  } else {
+  } else if (cpfValidate(onlyDigits)) {
     return { success: true }
+  } else {
+    return { success: false, message: 'CPF inválido' }
   }
 }
 
 export function cpfValidate(cpf: string): boolean {
-  cpf = cpf.replace(/[^\d]+/g, '')
+  cpf = cpf.replaceAll(/[^\d]+/g, '')
   if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false
 
   let soma = 0
-  for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i)
+  for (let i = 0; i < 9; i++) soma += Number.parseInt(cpf.charAt(i)) * (10 - i)
   let resto = 11 - (soma % 11)
   if (resto === 10 || resto === 11) resto = 0
-  if (resto !== parseInt(cpf.charAt(9))) return false
+  if (resto !== Number.parseInt(cpf.charAt(9))) return false
 
   soma = 0
-  for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i)
+  for (let i = 0; i < 10; i++) soma += Number.parseInt(cpf.charAt(i)) * (11 - i)
   resto = 11 - (soma % 11)
   if (resto === 10 || resto === 11) resto = 0
-  return resto === parseInt(cpf.charAt(10))
+  return resto === Number.parseInt(cpf.charAt(10))
 }
 
 export function phoneValidation(phone: string): ValidationResult {
-  const onlyDigits = phone?.replace(/\D/g, '')
+  const onlyDigits = phone?.replaceAll(/\D/g, '')
   if (!onlyDigits || onlyDigits.length === 0) {
     return { success: false, message: 'Campo obrigatório' }
-  } else if (!phoneValidate(phone)) {
-    return { success: false, message: 'Celular inválido' }
-  } else {
+  } else if (phoneValidate(phone)) {
     return { success: true }
+  } else {
+    return { success: false, message: 'Celular inválido' }
   }
 }
 

@@ -5,12 +5,11 @@ import { ElementColWrapper } from './ElementColWrapper'
 import { UseFormStore } from '../stores/UseFormStore'
 import type { ElementType } from '../types/ElementType'
 import type { InputPropertiesType } from '../types/InputPropertiesType'
-import type { StylesType } from '../types/StylesType'
 
 export function InputElement({ element }: { readonly element: ElementType }) {
   const properties: InputPropertiesType =
     typeof element.properties === 'string' ? JSON.parse(element.properties) : element.properties
-  const style = element.styles as StylesType
+  const style = element.styles
 
   const hidden = UseFormStore((state) => state.elements[element.id]?.hidden)
   const error = UseFormStore((state) => state.elements[element.id]?.error)

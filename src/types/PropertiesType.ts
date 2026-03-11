@@ -4,6 +4,8 @@ export interface PropertiesType {
   message?: string
   type?: string
   startHidden?: boolean
+  path?: string
+  description?: string
   size?: {
     xs?: {
       span?: number

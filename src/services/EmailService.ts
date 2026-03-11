@@ -3,7 +3,7 @@ import type { MailBodyType } from '../types/MailBodyType'
 
 class EmailService {
 
-  private urlApi: string
+  private readonly urlApi: string
 
   constructor(urlApi: string) {
     this.urlApi = urlApi

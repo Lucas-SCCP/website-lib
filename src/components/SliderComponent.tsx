@@ -1,11 +1,21 @@
-import React from 'react'
 import { Row, Col } from 'react-bootstrap'
+import { useKeenSlider } from 'keen-slider/react'
 import { ElementFactory } from '../factories/ElementFactory'
 import type { ComponentType } from '../types/ComponentType'
-import type { ElementType } from '../types/ElementType'
 
-export function TextComponent({ component }: { readonly component: ComponentType }) {
+import 'keen-slider/keen-slider.min.css'
+
+export function SliderComponent({ component }: { readonly component: ComponentType }) {
   const elementFactory = new ElementFactory()
+  
+  const [ref] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    mode: "snap",
+    slides: {
+      perView: 1,
+      spacing: 10,
+    },
+  })
 
   return (
     <Col
@@ -17,10 +27,15 @@ export function TextComponent({ component }: { readonly component: ComponentType
       lg={{ span: component.properties.size.lg.span, offset: component.properties.size.lg.offset }}
     >
       <Row id="element-row">
-        {Object.values(component.elements.content).map((element: ElementType) => {
-          const e = elementFactory.build(element)
-          return React.cloneElement(e, { key: element.id })
-        })}
+        <Col>
+          <div ref={ref} className="keen-slider">
+            {Object.entries(component.elements.content).map(([id, element]) => (
+              <div key={id} className="keen-slider__slide">
+                {elementFactory.build(element)}
+              </div>
+            ))}
+          </div>
+        </Col>
       </Row>
     </Col>
   )

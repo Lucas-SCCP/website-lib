@@ -4,7 +4,7 @@ import type { WebsiteType } from '../types/WebsiteType'
 export function Header({ website }: { readonly website: WebsiteType }) {
   const headerProperties = website.header.properties
   const headerStyles = website.header.styles
-  const domain = website.domain.replace(/\./g, '')
+  const domain = website.domain.replaceAll('.', '')
   return (
     <Container fluid={headerStyles.fluid || undefined} style={{ backgroundColor: headerStyles.backgroundColor }}>
       <Row id="header">

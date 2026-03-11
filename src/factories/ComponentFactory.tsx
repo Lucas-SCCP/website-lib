@@ -4,6 +4,7 @@ import { TextComponent } from '../components/TextComponent'
 import { ListComponent } from '../components/ListComponent'
 import { CarouselComponent } from '../components/CarouselComponent'
 import { FormComponent } from '../components/FormComponent'
+import { SliderComponent } from '../components/SliderComponent'
 import type { ComponentType } from '../types/ComponentType'
 
 export class ComponentFactory {
@@ -17,6 +18,18 @@ export class ComponentFactory {
         return <CarouselComponent component={component} />
       case ComponentEnum.Form:
         return <FormComponent component={component} />
+      case ComponentEnum.Slider:
+        return <SliderComponent component={component} />
+      case ComponentEnum.LatestPosts:
+        return <TextComponent component={component} />
+      case ComponentEnum.ListOfPosts:
+        return <TextComponent component={component} />
+      case ComponentEnum.Files:
+        return <TextComponent component={component} />
+      case ComponentEnum.Card:
+        return <TextComponent component={component} />
+      case ComponentEnum.Gallery:
+        return <TextComponent component={component} />
       default:
         throw new Error('Invalid component type: ' + component.componentTypeId)
     }

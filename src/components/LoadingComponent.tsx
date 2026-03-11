@@ -1,6 +1,6 @@
 import { Container, Spinner } from 'react-bootstrap'
 
-export function Loading() {
+export function LoadingComponent() {
   return (
     <Container className="d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '100vh' }}>
       <output aria-busy="true">

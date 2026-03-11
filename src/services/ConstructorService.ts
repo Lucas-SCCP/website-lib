@@ -1,11 +1,6 @@
-import React from 'react'
 import { ApiService } from './ApiService'
 import { CacheService } from './CacheService'
-import { ComponentFactory } from '../factories/ComponentFactory'
-import { ElementFactory } from '../factories/ElementFactory'
 import type { RawWebsiteType } from '../types/RawWebsiteType'
-import type { ComponentType } from '../types/ComponentType'
-import type { ElementType } from '../types/ElementType'
 
 class ConstructorService {
   async fetchWebsiteFromApi(websiteId: number, apiUrl: string): Promise<RawWebsiteType> {
@@ -41,16 +36,6 @@ class ConstructorService {
         path: page.path,
         type: 'link' as const
       }))
-  }
-
-  createComponent(component: ComponentType): React.ReactElement | null {
-    const componentFactory = new ComponentFactory()
-    return componentFactory.build(component)
-  }
-
-  createElement(element: ElementType): React.ReactElement | null {
-    const elementFactory = new ElementFactory()
-    return elementFactory.build(element)
   }
 }
 

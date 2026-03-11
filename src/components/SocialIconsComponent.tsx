@@ -1,26 +1,25 @@
 import { Row, Col } from 'react-bootstrap'
-import { IconType } from 'react-icons'
 import { FaFacebookF, FaInstagram, FaLink } from 'react-icons/fa'
 import type { SocialPropertiesType } from '../types/SocialPropertiesType'
 
-export function SocialIcons({ social }: { readonly social: SocialPropertiesType }) {
+export function SocialIconsComponent({ social }: { readonly social: SocialPropertiesType }) {
   const elements = [
     {
       id: 1,
       url: social.facebook.path,
-      icon: FaFacebookF as IconType,
+      icon: FaFacebookF,
       description: 'Logo do Facebook'
     },
     {
       id: 2,
       url: social.instagram.path,
-      icon: FaInstagram as IconType,
+      icon: FaInstagram,
       description: 'Logo do Instagram'
     },
     {
       id: 3,
       url: social.linktree.path,
-      icon: FaLink as IconType,
+      icon: FaLink,
       description: 'Logo do Linktree'
     }
   ]
