@@ -5,6 +5,7 @@ import { ListComponent } from '../components/ListComponent'
 import { CarouselComponent } from '../components/CarouselComponent'
 import { FormComponent } from '../components/FormComponent'
 import { SliderComponent } from '../components/SliderComponent'
+import { CardComponent } from '../components/CardComponent'
 import type { ComponentType } from '../types/ComponentType'
 
 export class ComponentFactory {
@@ -27,7 +28,7 @@ export class ComponentFactory {
       case ComponentEnum.Files:
         return <TextComponent component={component} />
       case ComponentEnum.Card:
-        return <TextComponent component={component} />
+        return <CardComponent component={component} />
       case ComponentEnum.Gallery:
         return <TextComponent component={component} />
       default:
